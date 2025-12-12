@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">hula_site/</p>
+<p class="p1">│ &lt;!doctype html&gt;</p>
+<p class="p1">&lt;html lang="ko"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="utf-8" /&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width,initial-scale=1" /&gt;</p>
+<p class="p1">&lt;title&gt;Maginey Hula — Complete&lt;/title&gt;</p>
+<p class="p1">&lt;meta name="description" content="완성된 Maginey Hula — 상세 페이지, 44카드, 연동 가능한 YouTube 링크, 카드 애니메이션 포함" /&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Noto+Sans+KR:wght@300;400;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">:root{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--bg:#f6f7f8;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--surface:#ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--muted:#6b7c7a;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--text:#072a2a;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--accent:#ff6f61; /* coral */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--accent2:#007e8a; /* ocean */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--accent3:#2e8b57; /* palm */</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--card-w:220px; --card-h:300px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--radius:14px;</p>
+<p class="p1">}</p>
+<p class="p1">*{box-sizing:border-box}</p>
+<p class="p1">html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:Inter, 'Noto Sans KR', system-ui, -apple-system, 'Segoe UI', Roboto}</p>
+<p class="p1">.container{max-width:1100px;margin:20px auto;padding:18px}</p>
+<p class="p1">.header{display:flex;align-items:center;gap:14px;margin-bottom:16px}</p>
+<p class="p1">.logo{width:56px;height:56px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}</p>
+<p class="p1">.header-info{flex:1}</p>
+<p class="p1">.h1{font-size:20px;font-weight:700;margin:0}</p>
+<p class="p1">.hdesc{font-size:13px;color:var(--muted);margin-top:4px}</p>
+<p class="p1">.nav{display:flex;gap:10px;margin-top:12px}</p>
+<p class="p1">.nav button{background:transparent;border:1px solid #e6eded;padding:8px 12px;border-radius:10px;cursor:pointer;color:var(--text)}</p>
+<p class="p1">.nav button.active{background:var(--accent2);color:#fff;border-color:transparent}</p>
+<p class="p1">.layout{display:grid;grid-template-columns:1fr 320px;gap:18px}</p>
+<p class="p1">.panel{background:var(--surface);border-radius:var(--radius);padding:14px;box-shadow:0 8px 22px rgba(10,20,20,0.06)}</p>
+<p class="p1">.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--card-w),1fr));gap:12px}</p>
+<p class="p1">.card{width:var(--card-w);height:var(--card-h);perspective:1200px}</p>
+<p class="p1">.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1)}</p>
+<p class="p1">.card.is-flipped .card-inner{transform:rotateY(180deg)}</p>
+<p class="p1">.face{position:absolute;inset:0;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;border:1px solid #eef6f6}</p>
+<p class="p1">.front{background:var(--accent2);color:#fff}</p>
+<p class="p1">.back{background:var(--surface);color:var(--text);transform:rotateY(180deg)}</p>
+<p class="p1">.card img.icon{width:64px;height:64px;border-radius:8px;margin-bottom:8px}</p>
+<p class="p1">.card h4{margin:6px 0 0 0;font-size:15px;text-align:center}</p>
+<p class="p1">.card p{margin:8px 0 0 0;font-size:13px;color:var(--muted);text-align:center}</p>
+<p class="p1">.controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}</p>
+<p class="p1">.controls .left{display:flex;gap:8px}</p>
+<p class="p1">.controls .right{display:flex;gap:8px}</p>
+<p class="p1">.btn{padding:8px 10px;border-radius:10px;border:1px solid #e6eded;background:#fff;cursor:pointer}</p>
+<p class="p1">.btn.primary{background:var(--accent);color:#fff;border-color:transparent}</p>
+<p class="p1">.search{padding:8px 10px;border-radius:10px;border:1px solid #e6eded;width:220px}</p>
+<p class="p1">.modal{position:fixed;left:0;right:0;top:0;bottom:0;display:none;align-items:center;justify-content:center;background:rgba(2,10,10,0.4);z-index:60}</p>
+<p class="p1">.modal.open{display:flex}</p>
+<p class="p1">.modal-card{width:720px;max-width:95%;background:var(--surface);border-radius:12px;padding:18px;box-shadow:0 20px 60px rgba(10,20,20,0.3)}</p>
+<p class="p1">.modal-close{position:absolute;right:16px;top:16px;border:none;background:transparent;cursor:pointer;font-size:18px}</p>
+<p class="p1">.detail-title{font-size:18px;margin:0}</p>
+<p class="p1">.detail-body{margin-top:8px;color:var(--muted);font-size:14px}</p>
+<p class="p1">.toc a{display:block;padding:8px;border-radius:8px;text-decoration:none;color:var(--text);border:1px solid #f0f5f4;margin-bottom:8px}</p>
+<p class="p1">.panel-scroll{max-height:520px;overflow:auto;padding-right:6px}</p>
+<p class="p1">.small{font-size:13px;color:var(--muted)}</p>
+<p class="p1">.footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}</p>
+<p class="p1">@media(max-width:980px){.layout{grid-template-columns:1fr}.panel-scroll{max-height:360px}}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header class="header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="logo"&gt;MH&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="header-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="h1"&gt;Maginey Hula — Complete App&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="hdesc"&gt;상세 페이지, 44장 마나 카드, 카드 애니메이션, YouTube 링크 관리까지 포함한 완성본&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;nav class="nav" aria-label="main navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="nav-btn active" data-panel="home"&gt;Home&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="nav-btn" data-panel="learn"&gt;Learn&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="nav-btn" data-panel="practice"&gt;Practice&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="nav-btn" data-panel="cards"&gt;Cards&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="nav-btn" data-panel="profile"&gt;Profile&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;main class="layout"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="homePanel" class="panel panel-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;환영합니다 — Hula Academy&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="small"&gt;여기는 훌라의 역사·레슨·멜레·전통 의상·악기·전통카드·라이브를 한 곳에 담은 학습 앱입니다. 메뉴를 클릭해 세부 페이지로 이동하세요.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="panel small" style="padding:12px"&gt;&lt;strong&gt;빠른 시작&lt;/strong&gt;&lt;p class="small"&gt;Learn → Dance Lessons에서 기본 스텝 영상을 확인하세요.&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="panel small" style="padding:12px"&gt;&lt;strong&gt;카드 덱&lt;/strong&gt;&lt;p class="small"&gt;Cards 메뉴에서 44장 마나 카드를 열어보세요.&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="panel small" style="padding:12px"&gt;&lt;strong&gt;YouTube Live&lt;/strong&gt;&lt;p class="small"&gt;Profile에서 라이브 링크를 추가하면 Practice에서 즉시 열립니다.&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="learnPanel" class="panel panel-scroll" style="display:none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Learn — 메뉴 상세&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="display:flex;gap:12px;margin-top:12px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div style="flex:1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h4&gt;Hula History&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="small"&gt;훌라는 하와이 전통 공동체의 이야기와 의례를 몸짓으로 전달하는 공연예술입니다. 초기 훌라는 신화와 의례에 연결되었으며, 왕정기에는 고급 예술로서 발전했습니다. 19세기 선교사 영향으로 일부 관습은 억압되었고, 20세기 부흥 운동을 통해 문화적 정체성의 핵심으로 회복되었습니다.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h4 style="margin-top:12px"&gt;Dance Lessons&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="small"&gt;Beginner: Kaholo, Hela, Ami — 기초 스텝과 자세. Intermediate: 손동작 연결과 표현력. Advanced: Storytelling과 군무 연습.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h4 style="margin-top:12px"&gt;Mele&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="small"&gt;Mele는 노래·시·창을 의미합니다. 전통 mele는 역사·신화·지역 기억을 전달하는 수단입니다. 가사 해석과 단어 설명을 통해 멜레의 깊이를 이해할 수 있습니다.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h4 style="margin-top:12px"&gt;Costumes&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="small"&gt;Pa'u skirt, Ti leaf skirt, Lei 등 의상별 의미와 제작법, 관리법을 설명합니다. 프로필에서 외부 링크를 저장하고 관리할 수 있습니다.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h4 style="margin-top:12px"&gt;Instruments&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="small"&gt;Ukulele 튜닝(G-C-E-A)과 기본 코드, Pahu/Ipu 같은 전통 타악기의 역할과 연주 팁을 포함합니다.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;aside style="width:240px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="panel" style="padding:10px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h4&gt;참고 자료&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;p class="small"&gt;자료 출처: Wikipedia, Library of Congress, Bishop Museum, Hawaiian Dictionary 등(교육용 요약)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/aside&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="practicePanel" class="panel panel-scroll" style="display:none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Practice&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="small"&gt;연습 비디오, 메트로놈, 반복 재생, 속도 조절 도구를 포함할 수 있습니다. 아래는 저장된 YouTube 라이브 링크 예시입니다.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="ytLinks" style="margin-top:12px"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="cardsPanel" class="panel panel-scroll" style="display:none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="controls"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input id="search" class="search" placeholder="카드 검색(제목/의미)" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn" id="shuffle"&gt;Shuffle&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn" id="export"&gt;Export JSON&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="right"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="small"&gt;총 &lt;span id="cardCount"&gt;44&lt;/span&gt;장&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="cardGrid" class="card-grid"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="profilePanel" class="panel panel-scroll" style="display:none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Profile&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="small"&gt;의상 링크 &amp; YouTube 라이브 링크를 여기서 추가·관리하세요. (로컬 저장 — 필요 시 Firebase 연동 가능)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="display:flex;gap:8px;margin-top:10px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="linkTitle" placeholder="링크 제목" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e8efee" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="linkUrl" placeholder="URL" style="flex:2;padding:8px;border-radius:8px;border:1px solid #e8efee" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="btn primary" id="addLink"&gt;저장&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="savedLinks" style="margin-top:12px"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;aside&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4&gt;44 Mana Cards&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="small"&gt;사용자가 제공한 44장 카드 텍스트를 그대로 반영했습니다. 카드를 클릭하면 모달이 열려 전체 해석을 보여줍니다.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="panel" style="margin-top:12px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4&gt;사용법&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;ol class="small"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;메뉴를 클릭해 상세 페이지로 이동하세요.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Cards에서 각 카드를 클릭해 플립·모달 보기.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Profile에서 YouTube URL을 추가하면 Practice에 표시됩니다.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ol&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/aside&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="footer"&gt;Maginey Hula — GitHub Pages용 정적 파일 (index.html)&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- Modal --&gt;</p>
+<p class="p1">&lt;div id="modal" class="modal" role="dialog" aria-hidden="true"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="modal-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="modal-close" id="modalClose"&gt;✕&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h3 class="detail-title" id="modalTitle"&gt;&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="detail-body" id="modalBody"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">// ------------------------------ Data (44 cards included) ------------------------------</p>
+<p class="p1">const cardDeck = [</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:1,title:"ʻIʻo (신비 (Mystery))",icon:'',meaning:"지금은 알 수 없는 것들을 포용하고, 대답을 찾으려 하기보다 흐름을 믿어야 할 때입니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:2,title:"Po/Ao (무의식/의식 (Unconscious/Conscious))",icon:'',meaning:"내면의 목소리와 꿈의 메시지에 귀 기울이세요. 의식과 무의식의 균형이 필요합니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:3,title:"Tapa (결합 (Union))",icon:'',meaning:"두 개의 다른 요소가 하나로 합쳐져 새로운 힘을 만들고 있습니다. 파트너십에 집중하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:4,title:"Mana (역량 강화 (Empowerment))",icon:'',meaning:"당신 안의 신성한 힘(Mana)을 발휘하세요. 주저하지 말고 당신의 능력을 세상에 보여줄 때입니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:5,title:"Ku/Hina (혼란/치유 (Conflict/Healing))",icon:'',meaning:"현재 갈등 상황이 치유와 성장의 기회임을 기억하세요. 싸움 대신 해결책을 찾으세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:6,title:"Hiʻiaka i ka poli o Pele (헌신 (Devotion))",icon:'',meaning:"당신의 목표나 사랑하는 사람에게 흔들림 없는 헌신을 보여주세요. 믿음이 기적을 만듭니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:7,title:"Huna (비밀들 (Secrets))",icon:'',meaning:"숨겨진 진실이나 정보를 발견하게 될 수 있습니다. 모든 것을 밝히기 전에 신중하게 다루세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:8,title:"Lono/Kamapuaʻa (추수/비옥함 (Harvest/Fertility))",icon:'',meaning:"당신이 노력한 결실을 거둘 때입니다. 새로운 아이디어나 프로젝트를 시작하기에 비옥한 시기입니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:9,title:"Mano (리더십/욕망 (Leadership/Lust))",icon:'',meaning:"당신의 타고난 리더십을 발휘하고, 열정적인 욕망을 창조적인 에너지로 전환하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:10,title:"Lāʻamaomao (속죄 (Atonement))",icon:'',meaning:"과거의 잘못이나 실수를 인정하고 용서를 구하세요. 내면의 평화를 위한 화해의 시간이 필요합니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:11,title:"Ka wai a ka pīʻilikō (투영 (Reflection))",icon:'',meaning:"주변 환경이 당신의 내면 상태를 반영합니다. 외부가 아닌 내면을 들여다보세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:12,title:"Kanaloa (토대 (Foundation))",icon:'',meaning:"당신의 삶의 기반과 토대를 점검하세요. 견고한 기초 위에 더 큰 성장을 이룰 수 있습니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:13,title:"Pahu (적절한 때/의례 (Timing/Ritual))",icon:'',meaning:"모든 일에는 적절한 때가 있습니다. 현재 상황에 맞는 의식이나 계획을 세우는 것이 중요합니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:14,title:"Aloha (사랑 (Love))",icon:'',meaning:"가장 기본적인 하와이 정신. 모든 행동과 생각에 사랑과 자비를 담으세요. 사랑은 치유의 힘입니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:15,title:"ʻAwa (제공/희생 (Offering/Sacrifice))",icon:'',meaning:"당신의 목표를 위해 기꺼이 희생하거나 내어줄 것이 있는지 생각하세요. 진정한 헌신이 필요합니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:16,title:"Menehune (인내 (Persistence))",icon:'',meaning:"작고 꾸준한 노력이 큰 결과를 만듭니다. 지치지 않고 목표를 향해 인내심을 가지세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:17,title:"Tī (정화 (Purification))",icon:'',meaning:"부정적인 에너지나 관계를 정리할 때입니다. 몸과 마음을 정화하고 깨끗한 상태를 만드세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:18,title:"Pueo (수호자 (Guidance))",icon:'',meaning:"당신에게 필요한 조언이나 지혜가 곧 찾아옵니다. 주변의 신호와 멘토의 말을 주의 깊게 들으세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:19,title:"ʻŌle (이야기들 (Stories))",icon:'',meaning:"당신이 자신에게 들려주는 이야기가 현실을 만듭니다. 부정적인 자기 대화를 긍정적인 이야기로 바꾸세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:20,title:"Iwi (존경 (Respect))",icon:'',meaning:"조상, 연장자, 그리고 모든 생명체에 대한 존경심을 표현하세요. 존중은 관계의 근간입니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:21,title:"Lāmakū (승리 (Victory))",icon:'',meaning:"당신의 노력과 싸움이 곧 승리로 끝날 것입니다. 자신감을 가지고 마지막까지 나아가세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:22,title:"Pele (대변동 (Upheaval))",icon:'',meaning:"강렬한 변화와 격변의 시기입니다. 낡은 것은 불태워지고 새로운 것이 창조될 것입니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:23,title:"Laka (영감 (Inspiration))",icon:'',meaning:"당신의 창의성과 영감이 최고조에 달합니다. 예술적 표현이나 새로운 학습을 시작하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:24,title:"Hoʻoponopono (의사소통 (Communication))",icon:'',meaning:"갈등 해소와 관계 회복을 위해 솔직하고 열린 마음으로 대화하세요. 용서가 핵심입니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:25,title:"Hulu (환상들 (Illusions))",icon:'',meaning:"당신이 보고 있는 것이 현실이 아닐 수 있습니다. 환상에서 벗어나 진실을 찾으려 노력하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:26,title:"Nalu (사색 (Contemplation))",icon:'',meaning:"파도처럼 밀려오는 생각들을 관찰하며 조용히 사색하는 시간이 필요합니다. 내면의 평화를 찾으세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:27,title:"Māmalāhoe (연민 (Compassion))",icon:'',meaning:"타인의 고통을 이해하고 공감하는 마음을 가지세요. 당신의 연민이 주변을 치유합니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:28,title:"Poliʻahu (다독임 (Caress))",icon:'',meaning:"지친 자신을 부드럽게 보듬고 휴식을 주세요. 스스로에게 친절해지는 것이 중요합니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:29,title:"Moʻo (함정들 (Traps))",icon:'',meaning:"당신의 앞길에 숨겨진 함정이나 장애물이 있을 수 있습니다. 모든 것을 주의 깊게 살펴보고 신중하게 행동하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:30,title:"Puʻolo (내어맡김 (Release))",icon:'',meaning:"붙잡고 있는 것을 놓아주세요. 통제하려는 욕심을 버리고 우주의 계획에 자신을 내어맡기세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:31,title:"Puhi (혼란 (Disruption))",icon:'',meaning:"예상치 못한 사건이 발생하여 일상이 흔들릴 수 있습니다. 이 혼란이 변화의 씨앗임을 기억하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:32,title:"Haumea (지속성 (Sustenance))",icon:'',meaning:"당신의 영적, 육체적, 재정적 안정을 위한 장기적인 계획을 세우세요. 지속 가능한 성장이 중요합니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:33,title:"Waʻa (이동 (Transition))",icon:'',meaning:"인생의 한 단계에서 다음 단계로 이동하는 과도기입니다. 변화를 두려워하지 말고 앞으로 나아가세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:34,title:"Pua (발전 (Advance))",icon:'',meaning:"꽃이 피어나듯, 당신의 계획과 프로젝트가 눈부시게 발전할 것입니다. 자신 있게 전진하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:35,title:"Māui (말썽꾼 (Trickster))",icon:'',meaning:"예기치 않은 사건이 당신의 관점을 뒤흔들 것입니다. 장난기 있는 상황에서 교훈을 찾으세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:36,title:"Pōhaku (관계들 (Relations))",icon:'',meaning:"당신 주변의 인간관계를 소중히 하세요. 견고한 바위처럼 굳건한 관계가 당신의 힘이 됩니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:37,title:"Naupaka (거리두기 (Detachment))",icon:'',meaning:"감정적으로 거리를 두고 객관적인 시각을 가질 때입니다. 집착을 놓아주세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:38,title:"Papa and Wākea (고군분투/일체성 (Struggle/Wholeness))",icon:'',meaning:"고군분투 속에서 진정한 일체성을 발견합니다. 이원성을 넘어선 전체를 보세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:39,title:"Lehua (입문 (Initiation))",icon:'',meaning:"새로운 지식이나 영적 경험으로의 입문 단계에 있습니다. 두려움을 버리고 새로운 길을 시작하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:40,title:"Kāne (창조 (Creation))",icon:'',meaning:"당신의 창조적인 에너지가 넘쳐흐릅니다. 새로운 아이디어를 현실화하는 데 집중하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:41,title:"Hina (양육하기 (Nurturing))",icon:'',meaning:"자신과 타인을 돌보고 양육하는 데 집중하세요. 부드러움과 보살핌이 필요한 시기입니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:42,title:"Anuenue (변형 (Transformation))",icon:'',meaning:"무지개처럼 아름다운 변형이 일어날 것입니다. 힘든 시간을 통과하면 보상이 기다리고 있습니다."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:43,title:"Lei (소중히 여기다 (Cherish))",icon:'',meaning:"당신의 삶에서 아름답고 소중한 것들을 축복하고 감사하세요. 현재의 순간을 소중히 간직하세요."},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{id:44,title:"ʻAnoʻano (의도 (Intention))",icon:'',meaning:"당신의 의도와 소망을 우주에 분명히 선언하세요. 명확한 의도가 현실을 만듭니다."}</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">// ------------------------------ Utility: create flat SVG icon per card (no gradients) ------------------------------</p>
+<p class="p1">function makeIconSVG(title, color){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const initials = title.split(' ')[0].slice(0,2).replace(/[^A-Za-zÀ-ſ0-9ʻʻ]/g,'').toUpperCase();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const bg = color || '#e6f7f6';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const fg = '#063636';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const svg = `&lt;svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'&gt;&lt;rect width='120' height='120' fill='${bg}' rx='12'/&gt;&lt;text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Noto Sans KR, sans-serif' font-size='36' fill='${fg}'&gt;${escapeHtml(initials)}&lt;/text&gt;&lt;/svg&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);</p>
+<p class="p1">}</p>
+<p class="p1">function escapeHtml(s){return (s||'').toString().replace(/&amp;/g,'&amp;amp;').replace(/&lt;/g,'&amp;lt;').replace(/&gt;/g,'&amp;gt;')}</p>
+<p class="p2"><br></p>
+<p class="p1">// assign icons automatically if empty</p>
+<p class="p1">const palette = ['#FFD1B1','#B7EDE0','#FFD8E0','#FFE6A7','#D6E9FF','#E6E6FF','#FDE7D9','#DFF3E8'];</p>
+<p class="p1">cardDeck.forEach((c,i)=&gt;{ if(!c.icon){ c.icon = makeIconSVG(c.title, palette[i % palette.length]); } });</p>
+<p class="p2"><br></p>
+<p class="p1">// ------------------------------ Render cards ------------------------------</p>
+<p class="p1">const gridEl = document.getElementById('cardGrid');</p>
+<p class="p1">const cardCountEl = document.getElementById('cardCount');</p>
+<p class="p1">const searchEl = document.getElementById('search');</p>
+<p class="p1">function renderCards(filter=''){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>gridEl.innerHTML='';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const query = filter.trim().toLowerCase();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const list = cardDeck.filter(c=&gt;{ return !query || (c.title + ' ' + c.meaning).toLowerCase().includes(query); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cardCountEl.textContent = list.length;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>list.forEach(c=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const outer = document.createElement('div'); outer.className='card'; outer.dataset.id = c.id;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const inner = document.createElement('div'); inner.className='card-inner';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const front = document.createElement('div'); front.className='face front';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const img = document.createElement('img'); img.className='icon'; img.src = c.icon; img.alt = c.title;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const h = document.createElement('h4'); h.textContent = c.title;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>front.appendChild(img); front.appendChild(h);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const back = document.createElement('div'); back.className='face back';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const bh = document.createElement('h4'); bh.textContent = c.title;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const bp = document.createElement('p'); bp.textContent = c.meaning;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>back.appendChild(bh); back.appendChild(bp);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>inner.appendChild(front); inner.appendChild(back); outer.appendChild(inner);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>outer.addEventListener('click', ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>outer.classList.toggle('is-flipped');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// also open modal with full content</p>
+<p class="p1"><span class="Apple-converted-space">      </span>openModal(c);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>gridEl.appendChild(outer);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ------------------------------ Modal ------------------------------</p>
+<p class="p1">const modal = document.getElementById('modal');</p>
+<p class="p1">const modalTitle = document.getElementById('modalTitle');</p>
+<p class="p1">const modalBody = document.getElementById('modalBody');</p>
+<p class="p1">const modalClose = document.getElementById('modalClose');</p>
+<p class="p1">function openModal(card){ modalTitle.textContent = card.title; modalBody.textContent = card.meaning; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }</p>
+<p class="p1">modalClose.addEventListener('click', ()=&gt;{ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); });</p>
+<p class="p1">modal.addEventListener('click', (e)=&gt;{ if(e.target===modal) { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); } });</p>
+<p class="p2"><br></p>
+<p class="p1">// ------------------------------ Shuffle / Export ------------------------------</p>
+<p class="p1">function shuffleDeck(){ for(let i=cardDeck.length-1;i&gt;0;i--){ const j = Math.floor(Math.random()*(i+1)); [cardDeck[i], cardDeck[j]] = [cardDeck[j], cardDeck[i]]; } renderCards(searchEl.value); }</p>
+<p class="p1">function exportJSON(){ const a = document.createElement('a'); a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(cardDeck, null, 2)); a.download = 'maginey_mana_cards.json'; a.click(); }</p>
+<p class="p2"><br></p>
+<p class="p1">// ------------------------------ Links (Profile -&gt; Practice) ------------------------------</p>
+<p class="p1">function loadSavedLinks(){ const arr = JSON.parse(localStorage.getItem('mag_links')||'[]'); const el = document.getElementById('savedLinks'); el.innerHTML = arr.length? arr.map((it,idx)=&gt;`&lt;div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#fbfbfb;margin-bottom:8px"&gt;&lt;div&gt;&lt;strong&gt;${escapeHtml(it.title)}&lt;/strong&gt;&lt;div class='small'&gt;${escapeHtml(it.url)}&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;button onclick="window.open('${encodeURI(''+(arr[idx].url))}','_blank')"&gt;Open&lt;/button&gt; &lt;button onclick="delLink(${idx})"&gt;Del&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;`).join('') : '&lt;div class="small"&gt;저장된 링크가 없습니다.&lt;/div&gt;' }</p>
+<p class="p1">function delLink(i){ const a=JSON.parse(localStorage.getItem('mag_links')||'[]'); a.splice(i,1); localStorage.setItem('mag_links',JSON.stringify(a)); loadSavedLinks(); renderYtLinks(); }</p>
+<p class="p1">function addLink(){ const title = document.getElementById('linkTitle').value.trim(); const url = document.getElementById('linkUrl').value.trim(); if(!title||!url){ alert('제목과 URL을 입력하세요'); return } const arr = JSON.parse(localStorage.getItem('mag_links')||'[]'); arr.push({title,url}); localStorage.setItem('mag_links',JSON.stringify(arr)); document.getElementById('linkTitle').value=''; document.getElementById('linkUrl').value=''; loadSavedLinks(); renderYtLinks(); }</p>
+<p class="p1">function renderYtLinks(){ const arr = JSON.parse(localStorage.getItem('mag_links')||'[]'); const el = document.getElementById('ytLinks'); el.innerHTML = arr.length? arr.map(it=&gt;`&lt;div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#fff;margin-bottom:8px"&gt;&lt;div&gt;&lt;strong&gt;${escapeHtml(it.title)}&lt;/strong&gt;&lt;div class='small'&gt;${escapeHtml(it.url)}&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;button onclick="window.open('${encodeURI(it.url)}','_blank')"&gt;Open&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;`).join('') : '&lt;div class="small"&gt;저장된 라이브 링크가 없습니다.&lt;/div&gt;' }</p>
+<p class="p2"><br></p>
+<p class="p1">// ------------------------------ Navigation handlers ------------------------------</p>
+<p class="p1">document.querySelectorAll('.nav-btn').forEach(btn=&gt; btn.addEventListener('click', ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.querySelectorAll('.nav-btn').forEach(b=&gt;b.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>btn.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const panel = btn.dataset.panel + 'Panel';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>['homePanel','learnPanel','practicePanel','cardsPanel','profilePanel'].forEach(id=&gt; document.getElementById(id).style.display = 'none');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById(panel).style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>window.scrollTo({top:0,behavior:'smooth'});</p>
+<p class="p1">}));</p>
+<p class="p2"><br></p>
+<p class="p1">// ------------------------------ Event bindings ------------------------------</p>
+<p class="p1">document.getElementById('shuffle').addEventListener('click', ()=&gt;{ shuffleDeck(); });</p>
+<p class="p1">document.getElementById('export').addEventListener('click', ()=&gt;{ exportJSON(); });</p>
+<p class="p1">searchEl.addEventListener('input', ()=&gt; renderCards(searchEl.value));</p>
+<p class="p1">document.getElementById('addLink').addEventListener('click', addLink);</p>
+<p class="p2"><br></p>
+<p class="p1">// initial render</p>
+<p class="p1">renderCards(); loadSavedLinks(); renderYtLinks();</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+<p class="p1"><span class="Apple-converted-space">   </span>← 캔버스에 있는 완성본 HTML을 여기에 그대로 붙여넣기</p>
+<p class="p1">│ README.md</p>
+<p class="p1">│</p>
+<p class="p1">├─ assets/</p>
+<p class="p1">│ <span class="Apple-converted-space">  </span>├─ icons/</p>
+<p class="p1">│ <span class="Apple-converted-space">  </span>└─ images/</p>
+<p class="p1">│</p>
+<p class="p1">└─ pages/</p>
+</body>
+</html>
