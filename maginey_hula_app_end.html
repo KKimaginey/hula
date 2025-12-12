@@ -1,181 +1,316 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maginey Hula App</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', 'Noto Sans KR', sans-serif;
-      background: #fafafa;
-      color: #222;
-    }
-
-    header {
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid #eee;
-      background: #ffffff;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-    }
-
-    .title {
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    main {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-      transition: 0.2s ease;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-
-    .card svg {
-      width: 34px;
-      height: 34px;
-      margin-bottom: 12px;
-    }
-
-    h3 {
-      margin: 0 0 6px 0;
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    p {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.45;
-      color: #444;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #ffffff;
-      border-top: 1px solid #ececec;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      z-index: 20;
-    }
-
-    .bottom-item {
-      text-align: center;
-      font-size: 12px;
-      color: #555;
-      cursor: pointer;
-    }
-
-    .bottom-item svg {
-      width: 24px;
-      height: 24px;
-      display: block;
-      margin: 0 auto 3px auto;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Maginey Hula — Complete</title>
+<meta name="description" content="완성된 Maginey Hula — 상세 페이지, 44카드, 연동 가능한 YouTube 링크, 카드 애니메이션 포함" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f8;
+  --surface:#ffffff;
+  --muted:#6b7c7a;
+  --text:#072a2a;
+  --accent:#ff6f61; /* coral */
+  --accent2:#007e8a; /* ocean */
+  --accent3:#2e8b57; /* palm */
+  --card-w:220px; --card-h:300px;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:Inter, 'Noto Sans KR', system-ui, -apple-system, 'Segoe UI', Roboto}
+.container{max-width:1100px;margin:20px auto;padding:18px}
+.header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.logo{width:56px;height:56px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.header-info{flex:1}
+.h1{font-size:20px;font-weight:700;margin:0}
+.hdesc{font-size:13px;color:var(--muted);margin-top:4px}
+.nav{display:flex;gap:10px;margin-top:12px}
+.nav button{background:transparent;border:1px solid #e6eded;padding:8px 12px;border-radius:10px;cursor:pointer;color:var(--text)}
+.nav button.active{background:var(--accent2);color:#fff;border-color:transparent}
+.layout{display:grid;grid-template-columns:1fr 320px;gap:18px}
+.panel{background:var(--surface);border-radius:var(--radius);padding:14px;box-shadow:0 8px 22px rgba(10,20,20,0.06)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--card-w),1fr));gap:12px}
+.card{width:var(--card-w);height:var(--card-h);perspective:1200px}
+.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.card.is-flipped .card-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;border:1px solid #eef6f6}
+.front{background:var(--accent2);color:#fff}
+.back{background:var(--surface);color:var(--text);transform:rotateY(180deg)}
+.card img.icon{width:64px;height:64px;border-radius:8px;margin-bottom:8px}
+.card h4{margin:6px 0 0 0;font-size:15px;text-align:center}
+.card p{margin:8px 0 0 0;font-size:13px;color:var(--muted);text-align:center}
+.controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.controls .left{display:flex;gap:8px}
+.controls .right{display:flex;gap:8px}
+.btn{padding:8px 10px;border-radius:10px;border:1px solid #e6eded;background:#fff;cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff;border-color:transparent}
+.search{padding:8px 10px;border-radius:10px;border:1px solid #e6eded;width:220px}
+.modal{position:fixed;left:0;right:0;top:0;bottom:0;display:none;align-items:center;justify-content:center;background:rgba(2,10,10,0.4);z-index:60}
+.modal.open{display:flex}
+.modal-card{width:720px;max-width:95%;background:var(--surface);border-radius:12px;padding:18px;box-shadow:0 20px 60px rgba(10,20,20,0.3)}
+.modal-close{position:absolute;right:16px;top:16px;border:none;background:transparent;cursor:pointer;font-size:18px}
+.detail-title{font-size:18px;margin:0}
+.detail-body{margin-top:8px;color:var(--muted);font-size:14px}
+.toc a{display:block;padding:8px;border-radius:8px;text-decoration:none;color:var(--text);border:1px solid #f0f5f4;margin-bottom:8px}
+.panel-scroll{max-height:520px;overflow:auto;padding-right:6px}
+.small{font-size:13px;color:var(--muted)}
+.footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:980px){.layout{grid-template-columns:1fr}.panel-scroll{max-height:360px}}
+</style>
 </head>
 <body>
+<div class="container">
+  <header class="header">
+    <div class="logo">MH</div>
+    <div class="header-info">
+      <div class="h1">Maginey Hula — Complete App</div>
+      <div class="hdesc">상세 페이지, 44장 마나 카드, 카드 애니메이션, YouTube 링크 관리까지 포함한 완성본</div>
+      <nav class="nav" aria-label="main navigation">
+        <button class="nav-btn active" data-panel="home">Home</button>
+        <button class="nav-btn" data-panel="learn">Learn</button>
+        <button class="nav-btn" data-panel="practice">Practice</button>
+        <button class="nav-btn" data-panel="cards">Cards</button>
+        <button class="nav-btn" data-panel="profile">Profile</button>
+      </nav>
+    </div>
+  </header>
 
-<header>
-  <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="48" stroke="#ff6f61" stroke-width="4" />
-    <path d="M30 55 C35 35, 65 35, 70 55 C65 45, 35 45, 30 55 Z" fill="#ff6f61" />
-    <circle cx="50" cy="40" r="6" fill="#ffb39b" />
-  </svg>
-  <div class="title">Maginey Hula</div>
-</header>
+  <main class="layout">
+    <section>
+      <div id="homePanel" class="panel panel-scroll">
+        <h3>환영합니다 — Hula Academy</h3>
+        <p class="small">여기는 훌라의 역사·레슨·멜레·전통 의상·악기·전통카드·라이브를 한 곳에 담은 학습 앱입니다. 메뉴를 클릭해 세부 페이지로 이동하세요.</p>
 
-<main>
-  <div class="card">
-    <svg viewBox="0 0 24 24"><path fill="#ff6f61" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-    <h3>훌라 역사</h3>
-    <p>하와이 창세 신화부터 현대 훌라까지… 시대별 훌라 문화 정리.</p>
-  </div>
+        <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          <div class="panel small" style="padding:12px"><strong>빠른 시작</strong><p class="small">Learn → Dance Lessons에서 기본 스텝 영상을 확인하세요.</p></div>
+          <div class="panel small" style="padding:12px"><strong>카드 덱</strong><p class="small">Cards 메뉴에서 44장 마나 카드를 열어보세요.</p></div>
+          <div class="panel small" style="padding:12px"><strong>YouTube Live</strong><p class="small">Profile에서 라이브 링크를 추가하면 Practice에서 즉시 열립니다.</p></div>
+        </div>
+      </div>
 
-  <div class="card">
-    <svg viewBox="0 0 24 24"><path fill="#00a0c6" d="M12 3l8 6-8 6-8-6z"/></svg>
-    <h3>춤 레슨</h3>
-    <p>기초 스텝, Hand Motion, 고급 카힐로까지 단계별 튜토리얼.</p>
-  </div>
+      <div id="learnPanel" class="panel panel-scroll" style="display:none">
+        <h3>Learn — 메뉴 상세</h3>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <div style="flex:1">
+            <h4>Hula History</h4>
+            <p class="small">훌라는 하와이 전통 공동체의 이야기와 의례를 몸짓으로 전달하는 공연예술입니다. 초기 훌라는 신화와 의례에 연결되었으며, 왕정기에는 고급 예술로서 발전했습니다. 19세기 선교사 영향으로 일부 관습은 억압되었고, 20세기 부흥 운동을 통해 문화적 정체성의 핵심으로 회복되었습니다.</p>
 
-  <div class="card">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#00c67c" stroke-width="2"/></svg>
-    <h3>Mele · 멜레</h3>
-    <p>가사 해석, 단어 설명, 발음 오디오, 신화적 상징.</p>
-  </div>
+            <h4 style="margin-top:12px">Dance Lessons</h4>
+            <p class="small">Beginner: Kaholo, Hela, Ami — 기초 스텝과 자세. Intermediate: 손동작 연결과 표현력. Advanced: Storytelling과 군무 연습.</p>
 
-  <div class="card">
-    <svg viewBox="0 0 24 24"><path fill="#ffb400" d="M4 4h16v16H4z"/></svg>
-    <h3>전통 의상</h3>
-    <p>빠우, 멀리, 레이… 의상 설명 & 사용자 링크 추가 기능.</p>
-  </div>
+            <h4 style="margin-top:12px">Mele</h4>
+            <p class="small">Mele는 노래·시·창을 의미합니다. 전통 mele는 역사·신화·지역 기억을 전달하는 수단입니다. 가사 해석과 단어 설명을 통해 멜레의 깊이를 이해할 수 있습니다.</p>
 
-  <div class="card">
-    <svg viewBox="0 0 24 24"><path fill="#d46bff" d="M12 2l4 8h-8l4-8zm0 20l-4-8h8l-4 8z"/></svg>
-    <h3>하와이 정신</h3>
-    <p>아로하 정신, 카풀레나, 호오폰포노 등 하와이 고유 가치관.</p>
-  </div>
+            <h4 style="margin-top:12px">Costumes</h4>
+            <p class="small">Pa'u skirt, Ti leaf skirt, Lei 등 의상별 의미와 제작법, 관리법을 설명합니다. 프로필에서 외부 링크를 저장하고 관리할 수 있습니다.</p>
 
-  <div class="card">
-    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" fill="#4a90e2"/></svg>
-    <h3>악기 가이드</h3>
-    <p>이푸헤케, 파후, 우쿨렐레… 소리·역사·연주법 정리.</p>
-  </div>
+            <h4 style="margin-top:12px">Instruments</h4>
+            <p class="small">Ukulele 튜닝(G-C-E-A)과 기본 코드, Pahu/Ipu 같은 전통 타악기의 역할과 연주 팁을 포함합니다.</p>
+          </div>
+          <aside style="width:240px">
+            <div class="panel" style="padding:10px">
+              <h4>참고 자료</h4>
+              <p class="small">자료 출처: Wikipedia, Library of Congress, Bishop Museum, Hawaiian Dictionary 등(교육용 요약)</p>
+            </div>
+          </aside>
+        </div>
+      </div>
 
-  <div class="card">
-    <svg viewBox="0 0 24 24"><path fill="#ff6f00" d="M12 2l10 5-10 5L2 7z"/></svg>
-    <h3>하와이 전통 카드</h3>
-    <p>총 44장의 상징 카드 & 해설 포함. 애니메이션 카드팩.</p>
-  </div>
+      <div id="practicePanel" class="panel panel-scroll" style="display:none">
+        <h3>Practice</h3>
+        <p class="small">연습 비디오, 메트로놈, 반복 재생, 속도 조절 도구를 포함할 수 있습니다. 아래는 저장된 YouTube 라이브 링크 예시입니다.</p>
+        <div id="ytLinks" style="margin-top:12px"></div>
+      </div>
 
-  <div class="card">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#c61e1e"/></svg>
-    <h3>YouTube Live</h3>
-    <p>훌라 실시간 강의 연결 · 알림 기능.</p>
-  </div>
-</main>
+      <div id="cardsPanel" class="panel panel-scroll" style="display:none">
+        <div class="controls">
+          <div class="left">
+            <input id="search" class="search" placeholder="카드 검색(제목/의미)" />
+            <button class="btn" id="shuffle">Shuffle</button>
+            <button class="btn" id="export">Export JSON</button>
+          </div>
+          <div class="right">
+            <div class="small">총 <span id="cardCount">44</span>장</div>
+          </div>
+        </div>
 
-<div class="bottom-nav">
-  <div class="bottom-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#555"/></svg>Home</div>
-  <div class="bottom-item"><svg viewBox="0 0 24 24"><path fill="#555" d="M4 4h16v16H4z"/></svg>Learn</div>
-  <div class="bottom-item"><svg viewBox="0 0 24 24"><path fill="#555" d="M12 2l4 8h-8l4-8z"/></svg>Practice</div>
-  <div class="bottom-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#555" stroke-width="2"/></svg>Profile</div>
+        <div id="cardGrid" class="card-grid"></div>
+      </div>
+
+      <div id="profilePanel" class="panel panel-scroll" style="display:none">
+        <h3>Profile</h3>
+        <p class="small">의상 링크 & YouTube 라이브 링크를 여기서 추가·관리하세요. (로컬 저장 — 필요 시 Firebase 연동 가능)</p>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <input id="linkTitle" placeholder="링크 제목" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e8efee" />
+          <input id="linkUrl" placeholder="URL" style="flex:2;padding:8px;border-radius:8px;border:1px solid #e8efee" />
+          <button class="btn primary" id="addLink">저장</button>
+        </div>
+        <div id="savedLinks" style="margin-top:12px"></div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="panel">
+        <h4>44 Mana Cards</h4>
+        <p class="small">사용자가 제공한 44장 카드 텍스트를 그대로 반영했습니다. 카드를 클릭하면 모달이 열려 전체 해석을 보여줍니다.</p>
+      </div>
+
+      <div class="panel" style="margin-top:12px">
+        <h4>사용법</h4>
+        <ol class="small">
+          <li>메뉴를 클릭해 상세 페이지로 이동하세요.</li>
+          <li>Cards에서 각 카드를 클릭해 플립·모달 보기.</li>
+          <li>Profile에서 YouTube URL을 추가하면 Practice에 표시됩니다.</li>
+        </ol>
+      </div>
+    </aside>
+  </main>
+
+  <div class="footer">Maginey Hula — GitHub Pages용 정적 파일 (index.html)</div>
 </div>
 
+<!-- Modal -->
+<div id="modal" class="modal" role="dialog" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h3 class="detail-title" id="modalTitle"></h3>
+    <div class="detail-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ------------------------------ Data (44 cards included) ------------------------------
+const cardDeck = [
+  {id:1,title:"ʻIʻo (신비 (Mystery))",icon:'',meaning:"지금은 알 수 없는 것들을 포용하고, 대답을 찾으려 하기보다 흐름을 믿어야 할 때입니다."},
+  {id:2,title:"Po/Ao (무의식/의식 (Unconscious/Conscious))",icon:'',meaning:"내면의 목소리와 꿈의 메시지에 귀 기울이세요. 의식과 무의식의 균형이 필요합니다."},
+  {id:3,title:"Tapa (결합 (Union))",icon:'',meaning:"두 개의 다른 요소가 하나로 합쳐져 새로운 힘을 만들고 있습니다. 파트너십에 집중하세요."},
+  {id:4,title:"Mana (역량 강화 (Empowerment))",icon:'',meaning:"당신 안의 신성한 힘(Mana)을 발휘하세요. 주저하지 말고 당신의 능력을 세상에 보여줄 때입니다."},
+  {id:5,title:"Ku/Hina (혼란/치유 (Conflict/Healing))",icon:'',meaning:"현재 갈등 상황이 치유와 성장의 기회임을 기억하세요. 싸움 대신 해결책을 찾으세요."},
+  {id:6,title:"Hiʻiaka i ka poli o Pele (헌신 (Devotion))",icon:'',meaning:"당신의 목표나 사랑하는 사람에게 흔들림 없는 헌신을 보여주세요. 믿음이 기적을 만듭니다."},
+  {id:7,title:"Huna (비밀들 (Secrets))",icon:'',meaning:"숨겨진 진실이나 정보를 발견하게 될 수 있습니다. 모든 것을 밝히기 전에 신중하게 다루세요."},
+  {id:8,title:"Lono/Kamapuaʻa (추수/비옥함 (Harvest/Fertility))",icon:'',meaning:"당신이 노력한 결실을 거둘 때입니다. 새로운 아이디어나 프로젝트를 시작하기에 비옥한 시기입니다."},
+  {id:9,title:"Mano (리더십/욕망 (Leadership/Lust))",icon:'',meaning:"당신의 타고난 리더십을 발휘하고, 열정적인 욕망을 창조적인 에너지로 전환하세요."},
+  {id:10,title:"Lāʻamaomao (속죄 (Atonement))",icon:'',meaning:"과거의 잘못이나 실수를 인정하고 용서를 구하세요. 내면의 평화를 위한 화해의 시간이 필요합니다."},
+  {id:11,title:"Ka wai a ka pīʻilikō (투영 (Reflection))",icon:'',meaning:"주변 환경이 당신의 내면 상태를 반영합니다. 외부가 아닌 내면을 들여다보세요."},
+  {id:12,title:"Kanaloa (토대 (Foundation))",icon:'',meaning:"당신의 삶의 기반과 토대를 점검하세요. 견고한 기초 위에 더 큰 성장을 이룰 수 있습니다."},
+  {id:13,title:"Pahu (적절한 때/의례 (Timing/Ritual))",icon:'',meaning:"모든 일에는 적절한 때가 있습니다. 현재 상황에 맞는 의식이나 계획을 세우는 것이 중요합니다."},
+  {id:14,title:"Aloha (사랑 (Love))",icon:'',meaning:"가장 기본적인 하와이 정신. 모든 행동과 생각에 사랑과 자비를 담으세요. 사랑은 치유의 힘입니다."},
+  {id:15,title:"ʻAwa (제공/희생 (Offering/Sacrifice))",icon:'',meaning:"당신의 목표를 위해 기꺼이 희생하거나 내어줄 것이 있는지 생각하세요. 진정한 헌신이 필요합니다."},
+  {id:16,title:"Menehune (인내 (Persistence))",icon:'',meaning:"작고 꾸준한 노력이 큰 결과를 만듭니다. 지치지 않고 목표를 향해 인내심을 가지세요."},
+  {id:17,title:"Tī (정화 (Purification))",icon:'',meaning:"부정적인 에너지나 관계를 정리할 때입니다. 몸과 마음을 정화하고 깨끗한 상태를 만드세요."},
+  {id:18,title:"Pueo (수호자 (Guidance))",icon:'',meaning:"당신에게 필요한 조언이나 지혜가 곧 찾아옵니다. 주변의 신호와 멘토의 말을 주의 깊게 들으세요."},
+  {id:19,title:"ʻŌle (이야기들 (Stories))",icon:'',meaning:"당신이 자신에게 들려주는 이야기가 현실을 만듭니다. 부정적인 자기 대화를 긍정적인 이야기로 바꾸세요."},
+  {id:20,title:"Iwi (존경 (Respect))",icon:'',meaning:"조상, 연장자, 그리고 모든 생명체에 대한 존경심을 표현하세요. 존중은 관계의 근간입니다."},
+  {id:21,title:"Lāmakū (승리 (Victory))",icon:'',meaning:"당신의 노력과 싸움이 곧 승리로 끝날 것입니다. 자신감을 가지고 마지막까지 나아가세요."},
+  {id:22,title:"Pele (대변동 (Upheaval))",icon:'',meaning:"강렬한 변화와 격변의 시기입니다. 낡은 것은 불태워지고 새로운 것이 창조될 것입니다."},
+  {id:23,title:"Laka (영감 (Inspiration))",icon:'',meaning:"당신의 창의성과 영감이 최고조에 달합니다. 예술적 표현이나 새로운 학습을 시작하세요."},
+  {id:24,title:"Hoʻoponopono (의사소통 (Communication))",icon:'',meaning:"갈등 해소와 관계 회복을 위해 솔직하고 열린 마음으로 대화하세요. 용서가 핵심입니다."},
+  {id:25,title:"Hulu (환상들 (Illusions))",icon:'',meaning:"당신이 보고 있는 것이 현실이 아닐 수 있습니다. 환상에서 벗어나 진실을 찾으려 노력하세요."},
+  {id:26,title:"Nalu (사색 (Contemplation))",icon:'',meaning:"파도처럼 밀려오는 생각들을 관찰하며 조용히 사색하는 시간이 필요합니다. 내면의 평화를 찾으세요."},
+  {id:27,title:"Māmalāhoe (연민 (Compassion))",icon:'',meaning:"타인의 고통을 이해하고 공감하는 마음을 가지세요. 당신의 연민이 주변을 치유합니다."},
+  {id:28,title:"Poliʻahu (다독임 (Caress))",icon:'',meaning:"지친 자신을 부드럽게 보듬고 휴식을 주세요. 스스로에게 친절해지는 것이 중요합니다."},
+  {id:29,title:"Moʻo (함정들 (Traps))",icon:'',meaning:"당신의 앞길에 숨겨진 함정이나 장애물이 있을 수 있습니다. 모든 것을 주의 깊게 살펴보고 신중하게 행동하세요."},
+  {id:30,title:"Puʻolo (내어맡김 (Release))",icon:'',meaning:"붙잡고 있는 것을 놓아주세요. 통제하려는 욕심을 버리고 우주의 계획에 자신을 내어맡기세요."},
+  {id:31,title:"Puhi (혼란 (Disruption))",icon:'',meaning:"예상치 못한 사건이 발생하여 일상이 흔들릴 수 있습니다. 이 혼란이 변화의 씨앗임을 기억하세요."},
+  {id:32,title:"Haumea (지속성 (Sustenance))",icon:'',meaning:"당신의 영적, 육체적, 재정적 안정을 위한 장기적인 계획을 세우세요. 지속 가능한 성장이 중요합니다."},
+  {id:33,title:"Waʻa (이동 (Transition))",icon:'',meaning:"인생의 한 단계에서 다음 단계로 이동하는 과도기입니다. 변화를 두려워하지 말고 앞으로 나아가세요."},
+  {id:34,title:"Pua (발전 (Advance))",icon:'',meaning:"꽃이 피어나듯, 당신의 계획과 프로젝트가 눈부시게 발전할 것입니다. 자신 있게 전진하세요."},
+  {id:35,title:"Māui (말썽꾼 (Trickster))",icon:'',meaning:"예기치 않은 사건이 당신의 관점을 뒤흔들 것입니다. 장난기 있는 상황에서 교훈을 찾으세요."},
+  {id:36,title:"Pōhaku (관계들 (Relations))",icon:'',meaning:"당신 주변의 인간관계를 소중히 하세요. 견고한 바위처럼 굳건한 관계가 당신의 힘이 됩니다."},
+  {id:37,title:"Naupaka (거리두기 (Detachment))",icon:'',meaning:"감정적으로 거리를 두고 객관적인 시각을 가질 때입니다. 집착을 놓아주세요."},
+  {id:38,title:"Papa and Wākea (고군분투/일체성 (Struggle/Wholeness))",icon:'',meaning:"고군분투 속에서 진정한 일체성을 발견합니다. 이원성을 넘어선 전체를 보세요."},
+  {id:39,title:"Lehua (입문 (Initiation))",icon:'',meaning:"새로운 지식이나 영적 경험으로의 입문 단계에 있습니다. 두려움을 버리고 새로운 길을 시작하세요."},
+  {id:40,title:"Kāne (창조 (Creation))",icon:'',meaning:"당신의 창조적인 에너지가 넘쳐흐릅니다. 새로운 아이디어를 현실화하는 데 집중하세요."},
+  {id:41,title:"Hina (양육하기 (Nurturing))",icon:'',meaning:"자신과 타인을 돌보고 양육하는 데 집중하세요. 부드러움과 보살핌이 필요한 시기입니다."},
+  {id:42,title:"Anuenue (변형 (Transformation))",icon:'',meaning:"무지개처럼 아름다운 변형이 일어날 것입니다. 힘든 시간을 통과하면 보상이 기다리고 있습니다."},
+  {id:43,title:"Lei (소중히 여기다 (Cherish))",icon:'',meaning:"당신의 삶에서 아름답고 소중한 것들을 축복하고 감사하세요. 현재의 순간을 소중히 간직하세요."},
+  {id:44,title:"ʻAnoʻano (의도 (Intention))",icon:'',meaning:"당신의 의도와 소망을 우주에 분명히 선언하세요. 명확한 의도가 현실을 만듭니다."}
+];
+
+// ------------------------------ Utility: create flat SVG icon per card (no gradients) ------------------------------
+function makeIconSVG(title, color){
+  const initials = title.split(' ')[0].slice(0,2).replace(/[^A-Za-zÀ-ſ0-9ʻʻ]/g,'').toUpperCase();
+  const bg = color || '#e6f7f6';
+  const fg = '#063636';
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='${bg}' rx='12'/><text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Noto Sans KR, sans-serif' font-size='36' fill='${fg}'>${escapeHtml(initials)}</text></svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+function escapeHtml(s){return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+// assign icons automatically if empty
+const palette = ['#FFD1B1','#B7EDE0','#FFD8E0','#FFE6A7','#D6E9FF','#E6E6FF','#FDE7D9','#DFF3E8'];
+cardDeck.forEach((c,i)=>{ if(!c.icon){ c.icon = makeIconSVG(c.title, palette[i % palette.length]); } });
+
+// ------------------------------ Render cards ------------------------------
+const gridEl = document.getElementById('cardGrid');
+const cardCountEl = document.getElementById('cardCount');
+const searchEl = document.getElementById('search');
+function renderCards(filter=''){
+  gridEl.innerHTML='';
+  const query = filter.trim().toLowerCase();
+  const list = cardDeck.filter(c=>{ return !query || (c.title + ' ' + c.meaning).toLowerCase().includes(query); });
+  cardCountEl.textContent = list.length;
+  list.forEach(c=>{
+    const outer = document.createElement('div'); outer.className='card'; outer.dataset.id = c.id;
+    const inner = document.createElement('div'); inner.className='card-inner';
+    const front = document.createElement('div'); front.className='face front';
+    const img = document.createElement('img'); img.className='icon'; img.src = c.icon; img.alt = c.title;
+    const h = document.createElement('h4'); h.textContent = c.title;
+    front.appendChild(img); front.appendChild(h);
+    const back = document.createElement('div'); back.className='face back';
+    const bh = document.createElement('h4'); bh.textContent = c.title;
+    const bp = document.createElement('p'); bp.textContent = c.meaning;
+    back.appendChild(bh); back.appendChild(bp);
+    inner.appendChild(front); inner.appendChild(back); outer.appendChild(inner);
+    outer.addEventListener('click', ()=>{
+      outer.classList.toggle('is-flipped');
+      // also open modal with full content
+      openModal(c);
+    });
+    gridEl.appendChild(outer);
+  });
+}
+
+// ------------------------------ Modal ------------------------------
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+const modalClose = document.getElementById('modalClose');
+function openModal(card){ modalTitle.textContent = card.title; modalBody.textContent = card.meaning; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
+modalClose.addEventListener('click', ()=>{ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); });
+modal.addEventListener('click', (e)=>{ if(e.target===modal) { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); } });
+
+// ------------------------------ Shuffle / Export ------------------------------
+function shuffleDeck(){ for(let i=cardDeck.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [cardDeck[i], cardDeck[j]] = [cardDeck[j], cardDeck[i]]; } renderCards(searchEl.value); }
+function exportJSON(){ const a = document.createElement('a'); a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(cardDeck, null, 2)); a.download = 'maginey_mana_cards.json'; a.click(); }
+
+// ------------------------------ Links (Profile -> Practice) ------------------------------
+function loadSavedLinks(){ const arr = JSON.parse(localStorage.getItem('mag_links')||'[]'); const el = document.getElementById('savedLinks'); el.innerHTML = arr.length? arr.map((it,idx)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#fbfbfb;margin-bottom:8px"><div><strong>${escapeHtml(it.title)}</strong><div class='small'>${escapeHtml(it.url)}</div></div><div><button onclick="window.open('${encodeURI(''+(arr[idx].url))}','_blank')">Open</button> <button onclick="delLink(${idx})">Del</button></div></div>`).join('') : '<div class="small">저장된 링크가 없습니다.</div>' }
+function delLink(i){ const a=JSON.parse(localStorage.getItem('mag_links')||'[]'); a.splice(i,1); localStorage.setItem('mag_links',JSON.stringify(a)); loadSavedLinks(); renderYtLinks(); }
+function addLink(){ const title = document.getElementById('linkTitle').value.trim(); const url = document.getElementById('linkUrl').value.trim(); if(!title||!url){ alert('제목과 URL을 입력하세요'); return } const arr = JSON.parse(localStorage.getItem('mag_links')||'[]'); arr.push({title,url}); localStorage.setItem('mag_links',JSON.stringify(arr)); document.getElementById('linkTitle').value=''; document.getElementById('linkUrl').value=''; loadSavedLinks(); renderYtLinks(); }
+function renderYtLinks(){ const arr = JSON.parse(localStorage.getItem('mag_links')||'[]'); const el = document.getElementById('ytLinks'); el.innerHTML = arr.length? arr.map(it=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#fff;margin-bottom:8px"><div><strong>${escapeHtml(it.title)}</strong><div class='small'>${escapeHtml(it.url)}</div></div><div><button onclick="window.open('${encodeURI(it.url)}','_blank')">Open</button></div></div>`).join('') : '<div class="small">저장된 라이브 링크가 없습니다.</div>' }
+
+// ------------------------------ Navigation handlers ------------------------------
+document.querySelectorAll('.nav-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const panel = btn.dataset.panel + 'Panel';
+  ['homePanel','learnPanel','practicePanel','cardsPanel','profilePanel'].forEach(id=> document.getElementById(id).style.display = 'none');
+  document.getElementById(panel).style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+// ------------------------------ Event bindings ------------------------------
+document.getElementById('shuffle').addEventListener('click', ()=>{ shuffleDeck(); });
+document.getElementById('export').addEventListener('click', ()=>{ exportJSON(); });
+searchEl.addEventListener('input', ()=> renderCards(searchEl.value));
+document.getElementById('addLink').addEventListener('click', addLink);
+
+// initial render
+renderCards(); loadSavedLinks(); renderYtLinks();
+
+</script>
 </body>
 </html>
