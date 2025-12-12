@@ -1,0 +1,287 @@
+<!doctype html>
+<!-- Maginey Hula — GitHub-ready single-file prototype
+     - This file is prepared for GitHub Pages as index.html
+     - Contains: expanded content (extracted headings from your site), placeholder assets, and 3 visual theme variants
+     - How to use: Save as index.html in a repo and push to GitHub. Assets can be placed in /assets/ folder.
+-->
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maginey / Hula Academy — Prototype</title>
+  <meta name="description" content="Hula Academy — 훌라의 역사, 레슨, 멜레(가사), 전통 의상, 악기, 하와이 정신, 전통 카드, YouTube Live 링크를 담은 학습 앱 데모" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root{ --coral:#FF6F61; --ocean:#007E8A; --palm:#2E8B57; --sunset:#FF8C42; --surface:#FBFBFB; --card-bg:#fff; --radius:16px; --gap:14px; }
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(180deg,#fff 0%,#f7fbfb 100%); color:#05313a}
+    .container{max-width:1000px;margin:22px auto;padding:18px}
+    header{display:flex;gap:12px;align-items:center}
+    .logo{display:flex;align-items:center;gap:12px}
+    .plumeria{width:56px;height:56px;border-radius:12px;background:var(--coral);display:flex;align-items:center;justify-content:center}
+    .plumeria svg{width:36px;height:36px}
+    h1{margin:0;font-size:20px;color:#fff}
+    .title-bar{flex:1;padding:12px;border-radius:12px;background:var(--coral);display:flex;justify-content:space-between;align-items:center}
+    .title-bar .sub{font-size:13px;color:rgba(255,255,255,0.9)}
+
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap);margin-top:18px}
+    .card{background:var(--card-bg);border-radius:var(--radius);padding:16px;box-shadow:0 8px 20px rgba(13,40,45,0.06);min-height:120px;display:flex;flex-direction:column;justify-content:space-between}
+    .card h3{margin:0 0 6px 0}
+    .card p{margin:0;color:#255b5f}
+
+    .c-sunset{background:linear-gradient(180deg,var(--sunset),#ffb585);color:#fff}
+    .c-ocean{background:linear-gradient(180deg,#006b79,var(--ocean));color:#fff}
+    .c-palm{background:linear-gradient(180deg,#2da976,var(--palm));color:#fff}
+    .c-coral{background:linear-gradient(180deg,#ff8570,var(--coral));color:#fff}
+
+    nav.bottom{position:fixed;left:0;right:0;bottom:14px;display:flex;justify-content:center}
+    .navwrap{max-width:1000px;width:100%;padding:8px;background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);border-radius:14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 30px rgba(9,18,20,0.08)}
+    .nav-item{flex:1;text-align:center;padding:8px 6px;border-radius:10px}
+    .nav-item .mi{display:block;font-size:22px}
+    .nav-item span{display:block;font-size:12px}
+
+    .panel{display:none}
+    .panel.active{display:block}
+
+    /* detail layout */
+    .detail{background:#fff;border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(10,20,22,0.04);margin-top:12px}
+    .detail h3{margin-top:0}
+    .list-inline{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{padding:6px 10px;border-radius:999px;background:#f0fbfa;border:1px solid rgba(2,66,73,0.04)}
+
+    /* theme variants */
+    .theme-switch{display:flex;gap:8px;align-items:center}
+    .theme-btn{padding:6px 10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);cursor:pointer}
+
+    /* simple responsive */
+    @media (max-width:720px){.grid{grid-template-columns:1fr}header{flex-direction:column;align-items:stretch}.title-bar{justify-content:flex-start}}
+
+    /* small utility */
+    .small{font-size:13px;color:#114446}
+    a{color:inherit}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="plumeria" aria-hidden>
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#fff3b0"/><stop offset="1" stop-color="#ffd36b"/></linearGradient></defs><path d="M32 6c6 0 10 6 12 9s6 3 6 6-3 7-6 9c-3 2-6 8-9 8s-6-6-9-8-6-4-6-9 6-6 12-6z" fill="url(#g2)" stroke="#fff4c6"/></svg>
+        </div>
+        <div class="title-bar">
+          <div>
+            <h1 style="font-size:18px;margin:0;color:white">Hula Academy</h1>
+            <div class="sub">Hula History · Dance Lessons · Mele · Costumes · Instruments · Spirit · Cards · Live</div>
+          </div>
+          <div class="theme-switch">
+            <div class="small">Theme</div>
+            <button class="theme-btn" data-theme="default">Default</button>
+            <button class="theme-btn" data-theme="light">Light</button>
+            <button class="theme-btn" data-theme="contrast">Contrast</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="panel active">
+        <div class="grid">
+          <article class="card c-sunset" data-key="history"><div><h3>Hula History</h3><p>역사와 기원 — 훌라는 하와이의 사회·의례·구전 전통과 깊게 연결된 춤입니다. 왕조 시대, 기독교 영향, 20세기 문화 부흥까지 주요 흐름을 요약합니다.</p></div><div class="small">읽기 · 타임라인 · 이미지</div></article>
+
+          <article class="card c-ocean" data-key="lessons"><div><h3>Dance Lessons</h3><p>기초: 기본 스텝과 리듬 → 중급: 손동작·표현 → 고급: 스토리텔링·군무. 비디오, 텍스트, 연습 노트 포함.</p></div><div class="small">비디오 · 연습 모듈</div></article>
+
+          <article class="card c-palm" data-key="mele"><div><h3>Mele Songs</h3><p>노래 원문/해설/한국어 해석(저작권이 허용되는 경우 전체 가사 제공, 최신 저작물은 요약/해석 중심)</p></div><div class="small">가사 · 단어사전</div></article>
+
+          <article class="card c-coral" data-key="costumes"><div><h3>Traditional Costumes</h3><p>파우 스커트, 레이, 티리프 의상 등 재료·제작법·착용법 및 사용자가 링크 추가 가능.</p></div><div class="small">링크 저장 가능</div></article>
+
+          <article class="card c-palm" data-key="spirit"><div><h3>Hawaiian Spirit</h3><p>'Aloha'의 다층적 의미, mana(영적 힘), kapu(의례 규범) 등 토착 세계관을 소개합니다.</p></div><div class="small">문화 · 의례</div></article>
+
+          <article class="card c-ocean" data-key="instruments"><div><h3>Instruments</h3><p>Ukulele 기본 튜닝/코드, pahu 드럼/ipu 사용법, 간단한 연주 예제 포함.</p></div><div class="small">튜토리얼 · 탭</div></article>
+
+          <article class="card c-sunset" data-key="cards"><div><h3>Mana Cards</h3><p>전통 카드(또는 현대적 해석 카드)의 상징과 읽는 법, 예시 리딩을 포함합니다.</p></div><div class="small">상징 해설</div></article>
+
+          <article class="card c-ocean" data-key="youtube"><div><h3>YouTube Live</h3><p>실시간 강의 링크 연결 및 녹화 아카이브 접근.</p></div><div class="small">라이브 스케줄</div></article>
+        </div>
+      </section>
+
+      <section id="learn" class="panel">
+        <div class="detail" id="detailArea">
+          <!-- Default loaded content pulled from your site headings -->
+          <h3>요약: 사이트에서 확인된 섹션</h3>
+          <p class="small">원문 사이트(https://kkimaginey.github.io/hula/maginey_hula_app_3)에서 추출된 항목은 아래와 같습니다. 사이트에는 각 섹션의 제목(예: Hula History, Dance Lessons, Mele Songs, Costumes, Hawaiian Spirit, Mana Card, YouTube Class)이 있습니다. 세부 본문은 현재는 단락 수준의 짧은 설명만 존재하여, 이 파일에 교육용 요약과 예시 콘텐츠를 보완했습니다.</p>
+
+          <h4>Hula History — 보충 설명</h4>
+          <p>훌라의 기원과 사회적 역할, 왕정 시대의 기록, 선교사 영향으로 인한 억압과 20세기 부흥 운동을 간단히 정리합니다. 추천: 타임라인, 사진 콜렉션, 주요 인물(예: Queen Lili'uokalani 관련 컨텍스트) 링크 추가.</p>
+
+          <h4>Dance Lessons — 예시 모듈</h4>
+          <ol>
+            <li><strong>Beginner</strong> — Kaholo, Hela, Ami 등 기초 스텝 및 자세</li>
+            <li><strong>Intermediate</strong> — Hand gestures(손 동작) 연결, 간단한 소품 사용</li>
+            <li><strong>Advanced</strong> — Storytelling, choreography synthesis</li>
+          </ol>
+
+          <h4>Mele — 예시: &quot;Aloha 'Oe&quot;</h4>
+          <p>간단 해설: Queen Lili'uokalani가 쓴 노래로, 작별과 그리움의 정서를 담고 있습니다. (저작권: 이 곡은 19세기 작곡으로 퍼블릭 도메인으로 분류되는 경우가 많으나, 정확한 판권 여부는 곡/편곡에 따라 달라집니다 — 상업적 제공 시 확인 권장)</p>
+
+          <h4>Costumes</h4>
+          <p>Pa'u skirt(천 스커트), ti leaf skirt(티리프 스커트), lei(목걸이) 등 항목별 관리법과 제작 팁을 넣었습니다. 사용자가 링크 추가 가능(프로필 > Traditional Costumes 란에 저장).</p>
+
+          <h4>Hawaiian Spirit</h4>
+          <p>Aloha의 문화적 의미(친절·존중·연결), mana(영적 힘), kapu(규범)을 소개하는 짧은 에세이 및 참고자료 링크를 추가하면 좋습니다.</p>
+
+          <h4>Instruments</h4>
+          <p>Ukulele 표준 튜닝(GCEA)과 기본 코드, pahu 드럼의 역할 설명, ipu(호박타악기) 소개 및 연주 팁을 예시로 넣었습니다.</p>
+
+          <h4>Mana Card</h4>
+          <p>사이트에 &quot;44 Mana Card — 44 Pick&quot; 라는 레이블이 확인됩니다. 카드별 설명과 예시 리딩을 데이터로 채우면 학습용으로 유용합니다.</p>
+
+          <h4>YouTube Class</h4>
+          <p>라이브 스트리밍 URL을 사용자가 저장하면 Practice 영역에서 바로 열 수 있도록 구현되어 있습니다.</p>
+
+        </div>
+      </section>
+
+      <section id="practice" class="panel">
+        <div class="detail">
+          <h3>Practice</h3>
+          <p class="small">연습 비디오, 메트로놈, 반복 재생 목록, 연습 노트(로컬 저장) 등 기능을 포함합니다. 아래은 데모 링크들(대체 링크). 실제 강의 URL을 Profile에서 추가하세요.</p>
+          <div class="list-inline" style="margin-top:12px">
+            <a class="pill" href="https://www.youtube.com" target="_blank">Beginner — Footwork</a>
+            <a class="pill" href="https://www.youtube.com" target="_blank">Intermediate — Hands</a>
+            <a class="pill" href="https://www.youtube.com" target="_blank">Advanced — Storytelling</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile" class="panel">
+        <div class="detail">
+          <h3>Profile & Management</h3>
+          <p class="small">의상 링크, 즐겨찾기 비디오, 선호 색상, 알림(라이브 일정)을 저장합니다. 이 프로토타입은 브라우저 localStorage를 사용해 동작합니다. (GitHub Pages 환경에서 서버가 필요하면 Firebase 연동 권장)</p>
+
+          <h4>의상 링크 추가 (데모)</h4>
+          <div style="display:flex;gap:8px;margin-top:8px"><input id="titleIn" placeholder="의상 이름" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6efef"/><input id="urlIn" placeholder="URL" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6efef"/><button id="saveCostume" style="padding:8px;border-radius:8px;background:var(--ocean);color:white;border:none">저장</button></div>
+          <div id="savedCostumes" style="margin-top:10px"></div>
+
+          <h4 style="margin-top:14px">YouTube Live 추가</h4>
+          <div style="display:flex;gap:8px;margin-top:8px"><input id="ytTitleIn" placeholder="강의 이름" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6efef"/><input id="ytUrlIn" placeholder="https://" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6efef"/><button id="saveYt" style="padding:8px;border-radius:8px;background:var(--palm);color:white;border:none">저장</button></div>
+          <div id="savedYt" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <nav class="bottom" aria-hidden>
+    <div class="navwrap">
+      <div class="nav-item" data-panel="home"> <span class="mi material-icons">home</span><span>Home</span></div>
+      <div class="nav-item" data-panel="learn"> <span class="mi material-icons">school</span><span>Learn</span></div>
+      <div class="nav-item" data-panel="practice"> <span class="mi material-icons">self_improvement</span><span>Practice</span></div>
+      <div class="nav-item" data-panel="profile"> <span class="mi material-icons">person</span><span>Profile</span></div>
+    </div>
+  </nav>
+
+  <script>
+    // --- Extracted headings from your site (used to seed content) ---
+    const extracted = {
+      source: 'https://kkimaginey.github.io/hula/maginey_hula_app_3',
+      headings: [
+        'Hula History','Dance Lessons','Mele Songs','Costumes','Hawaiian Spirit','Mana Card','YouTube Class'
+      ]
+    }
+
+    // Navigation
+    document.querySelectorAll('.nav-item').forEach(it=>{
+      it.addEventListener('click',()=>{
+        document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+        it.classList.add('active');
+        const panel = it.dataset.panel;
+        document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+        document.getElementById(panel).classList.add('active');
+        window.scrollTo({top:0,behavior:'smooth'});
+      })
+    })
+
+    // Main card clicks go to Learn and show detail
+    document.querySelectorAll('.card[data-key]').forEach(card=>{
+      card.addEventListener('click',()=>{
+        const key = card.dataset.key;
+        document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+        document.querySelector('[data-panel="learn"]').classList.add('active');
+        document.querySelectorAll('.nav-item')[1].classList.add('active');
+        document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+        document.getElementById('learn').classList.add('active');
+        loadDetail(key);
+      })
+    })
+
+    function loadDetail(key){
+      const area = document.getElementById('detailArea');
+      const templates = {
+        history:`<h3>Hula History</h3><p>역사와 기원: 훌라는 의례, 공동체 서사, 구전 전통과 결합된 춤입니다. 추천 자료: 타임라인, 현지 기록사진, 추천 도서 목록을 추가하세요.</p>`,
+        lessons:`<h3>Dance Lessons</h3><p>레슨 구성 예시(모듈):</p><ol><li>Beginner: 기초 스텝(카홀로, 헬라, 아미)</li><li>Intermediate: 손동작 연결, 스토리 텔링</li><li>Advanced: 군무·표현력</li></ol>`,
+        mele:`<h3>Mele (Songs)</h3><p>가사 원문, 단어별 해설, 한국어 의역을 포함합니다. 예시: "Aloha ʻOe" 해설(작별의 정서). 상업적 가사 제공 시 저작권 확인 필요.</p>`,
+        costumes:`<h3>Traditional Costumes</h3><p>Pa'u, Ti-leaf skirt, Lei 등 항목별 설명. 외부 쇼핑/참고 링크를 사용자가 추가할 수 있습니다.</p>`,
+        spirit:`<h3>Hawaiian Spirit</h3><p>'Aloha'의 다층적 의미, mana, kapu 등의 개념과 현대 하와이 문화에서의 적용을 설명합니다.</p>`,
+        instruments:`<h3>Instruments</h3><p>Ukulele: 표준 튜닝 G-C-E-A 및 기본 코드 표 제공. Pahu / Ipu: 타악기 사용법과 문화적 맥락.</p>`,
+        cards:`<h3>Mana Cards</h3><p>카드별 심볼 뜻, 예시 리딩을 학습 자료로 추가하세요.</p>`
+      };
+      area.innerHTML = templates[key] || '<p>선택된 항목의 상세 콘텐츠가 준비되어 있지 않습니다.</p>';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    // Theme switching (3 visual variants)
+    document.querySelectorAll('.theme-btn').forEach(btn=>{
+      btn.addEventListener('click',()=> applyTheme(btn.dataset.theme))
+    })
+    function applyTheme(t){
+      if(t==='default'){
+        document.documentElement.style.setProperty('--coral','#FF6F61');
+        document.documentElement.style.setProperty('--ocean','#007E8A');
+        document.documentElement.style.setProperty('--palm','#2E8B57');
+        document.documentElement.style.setProperty('--sunset','#FF8C42');
+        document.body.style.background='linear-gradient(180deg,#fff 0%,#f7fbfb 100%)'
+      } else if(t==='light'){
+        document.documentElement.style.setProperty('--coral','#FF9A8B');
+        document.documentElement.style.setProperty('--ocean','#2EA6B2');
+        document.documentElement.style.setProperty('--palm','#46A67A');
+        document.documentElement.style.setProperty('--sunset','#FFB47A');
+        document.body.style.background='linear-gradient(180deg,#ffffff 0%,#fbfcff 100%)'
+      } else if(t==='contrast'){
+        document.documentElement.style.setProperty('--coral','#FF6F61');
+        document.documentElement.style.setProperty('--ocean','#004f57');
+        document.documentElement.style.setProperty('--palm','#19664b');
+        document.documentElement.style.setProperty('--sunset','#ff6b2f');
+        document.body.style.background='linear-gradient(180deg,#eef6f5 0%,#f3f7f7 100%)'
+      }
+    }
+
+    // local storage for costumes and yt links
+    function renderSaved(){
+      const cons = JSON.parse(localStorage.getItem('maginey_costumes')||'[]');
+      const out = cons.length? cons.map((c,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#f6fbfb;margin-bottom:6px"><div><strong>${escapeHtml(c.title)}</strong><div class='small'>${escapeHtml(c.url)}</div></div><div><button onclick="window.open('${encodeURI(c.url)}','_blank')" style='margin-right:6px'>Open</button><button onclick="removeCostume(${i})">Del</button></div></div>`).join('') : '<div class="small">(저장된 의상 링크 없음)</div>';
+      document.getElementById('savedCostumes').innerHTML = out;
+
+      const yts = JSON.parse(localStorage.getItem('maginey_yts')||'[]');
+      const out2 = yts.length? yts.map((y,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#f6fbfb;margin-bottom:6px"><div><strong>${escapeHtml(y.title)}</strong><div class='small'>${escapeHtml(y.url)}</div></div><div><button onclick="window.open('${encodeURI(y.url)}','_blank')" style='margin-right:6px'>Open</button><button onclick="removeYt(${i})">Del</button></div></div>`).join('') : '<div class="small">(저장된 라이브 없음)</div>';
+      document.getElementById('savedYt').innerHTML = out2;
+    }
+    document.getElementById('saveCostume').addEventListener('click',()=>{
+      const t = document.getElementById('titleIn').value.trim(); const u = document.getElementById('urlIn').value.trim();
+      if(!t||!u) return alert('제목과 URL을 입력하세요');
+      const arr = JSON.parse(localStorage.getItem('maginey_costumes')||'[]'); arr.push({title:t,url:u}); localStorage.setItem('maginey_costumes',JSON.stringify(arr)); document.getElementById('titleIn').value=''; document.getElementById('urlIn').value=''; renderSaved();
+    })
+    document.getElementById('saveYt').addEventListener('click',()=>{
+      const t = document.getElementById('ytTitleIn').value.trim(); const u = document.getElementById('ytUrlIn').value.trim();
+      if(!t||!u) return alert('제목과 URL을 입력하세요');
+      const arr = JSON.parse(localStorage.getItem('maginey_yts')||'[]'); arr.push({title:t,url:u}); localStorage.setItem('maginey_yts',JSON.stringify(arr)); document.getElementById('ytTitleIn').value=''; document.getElementById('ytUrlIn').value=''; renderSaved();
+    })
+    function removeCostume(i){ const a=JSON.parse(localStorage.getItem('maginey_costumes')||'[]'); a.splice(i,1); localStorage.setItem('maginey_costumes',JSON.stringify(a)); renderSaved() }
+    function removeYt(i){ const a=JSON.parse(localStorage.getItem('maginey_yts')||'[]'); a.splice(i,1); localStorage.setItem('maginey_yts',JSON.stringify(a)); renderSaved() }
+    function escapeHtml(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+    // initial
+    renderSaved(); applyTheme('default');
+  </script>
+</body>
+</html>
