@@ -1025,30 +1025,16 @@
         </div>
 
         <div class="mana-card-display">
-            <div class="mana-card" onclick="showManaCard(1, 'Pele', '변화와 변혁의 여신')">
-                <div class="card-number">1</div>
-                <div class="card-title">Pele</div>
-            </div>
-            <div class="mana-card" onclick="showManaCard(2, 'Kane', '창조의 신')">
-                <div class="card-number">2</div>
-                <div class="card-title">Kane</div>
-            </div>
-            <div class="mana-card" onclick="showManaCard(3, 'Ku', '힘과 용기')">
-                <div class="card-number">3</div>
-                <div class="card-title">Ku</div>
-            </div>
-            <div class="mana-card" onclick="showManaCard(4, 'Lono', '평화와 풍요')">
-                <div class="card-number">4</div>
-                <div class="card-title">Lono</div>
-            </div>
-            <div class="mana-card" onclick="showManaCard(5, 'Kanaloa', '바다와 치유')">
-                <div class="card-number">5</div>
-                <div class="card-title">Kanaloa</div>
-            </div>
-            <div class="mana-card" onclick="showManaCard(6, 'Maui', '영웅과 변화')">
-                <div class="card-number">6</div>
-                <div class="card-title">Maui</div>
-            </div>
+            <!-- Mana Spread Controls -->
+<div style="text-align:center; margin: 32px 0;">
+    <button class="cta-button" onclick="drawMana(1)">1장</button>
+    <button class="cta-button" onclick="drawMana(3)">3장</button>
+    <button class="cta-button" onclick="drawMana(5)">5장</button>
+</div>
+
+<!-- Mana Card Spread (비어있는 상태로 시작) -->
+<div id="mana-spread" class="mana-card-display"></div>
+
         </div>
 
         <div style="text-align: center; margin-top: 40px;">
@@ -1396,6 +1382,26 @@
         document.querySelectorAll('.card, .program-card, .song-item, .video-card, .costume-item').forEach(el => {
             observer.observe(el);
         });
+        <script>
+function drawMana(count) {
+    const spread = document.getElementById("mana-spread");
+    spread.innerHTML = "";
+
+    const shuffled = [...manaCards].sort(() => Math.random() - 0.5);
+    const selected = shuffled.slice(0, count);
+
+    selected.forEach(card => {
+        const el = document.createElement("div");
+        el.className = "mana-card";
+        el.innerHTML = `
+            <div class="card-title">${card.name}</div>
+        `;
+        el.onclick = () => openManaModal(card);
+        spread.appendChild(el);
+    });
+}
+</script>
+
     </script>
 </body>
 </html>
