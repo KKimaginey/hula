@@ -958,54 +958,8 @@
             <p>알로하 정신과 하와이 문화의 가치</p>
         </div>
 
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-icon">
-                    <span class="material-icons">favorite</span>
-                </div>
-                <h3>Aloha (알로하)</h3>
-                <p><strong>사랑과 환대</strong>: 단순한 인사말이 아닌 무조건적인 사랑, 친절, 자비를 의미합니다. 알로하 정신은 모든 생명체에 대한 존중과 배려를 실천하는 삶의 방식입니다.</p>
-            </div>
+               <div class="mana-card-display" id="mana-card-area"></div>
 
-            <div class="card">
-                <div class="card-icon">
-                    <span class="material-icons">self_improvement</span>
-                </div>
-                <h3>Mana (마나)</h3>
-                <p><strong>영적 힘과 에너지</strong>: 모든 것에 내재된 신성한 에너지. 자연, 사람, 장소에 깃든 영적 힘을 존중하고 보존하는 것이 하와이 문화의 핵심입니다.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-icon">
-                    <span class="material-icons">eco</span>
-                </div>
-                <h3>Mālama 'Āina (말라마 아이나)</h3>
-                <p><strong>땅을 돌보다</strong>: 자연과 환경을 보호하고 존중하는 하와이의 전통. 우리는 땅의 관리자이며, 미래 세대를 위해 자연을 보존해야 한다는 믿음입니다.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-icon">
-                    <span class="material-icons">family_restroom</span>
-                </div>
-                <h3>'Ohana (오하나)</h3>
-                <p><strong>가족과 공동체</strong>: 혈연을 넘어선 확대 가족 개념. 서로를 돌보고 지지하며, 아무도 뒤에 남기지 않는다는 오하나 정신은 하와이 문화의 근간입니다.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-icon">
-                    <span class="material-icons">lightbulb</span>
-                </div>
-                <h3>Ho'oponopono (호오포노포노)</h3>
-                <p><strong>관계 회복과 치유</strong>: "올바르게 만들다"는 의미의 하와이식 갈등 해결 방법. 용서, 화해, 치유를 통해 조화로운 관계를 회복하는 전통적 실천입니다.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-icon">
-                    <span class="material-icons">wb_twilight</span>
-                </div>
-                <h3>Pono (포노)</h3>
-                <p><strong>균형과 조화</strong>: 도덕적으로 올바르고 정의로운 상태. 자신, 타인, 자연과의 관계에서 균형을 유지하며 조화롭게 사는 것을 추구합니다.</p>
-            </div>
         </div>
     </section>
 
@@ -1055,6 +1009,7 @@
             <p style="color: var(--text-secondary); margin-bottom: 20px;">
                 💫 전체 44장의 마나 카드에 대해 알아보세요
             </p>
+            <button class="cta-button" onclick="drawOneMana()">🌺 마나카드 뽑기</button>
             <button class="cta-button" onclick="openModal('manaCards')">전체 카드 보기</button>
         </div>
     </section>
@@ -1448,6 +1403,58 @@
         document.querySelectorAll('.card, .program-card, .song-item, .video-card, .costume-item').forEach(el => {
             observer.observe(el);
         });
+        function drawOneMana() {
+        const cards = [
+        [1,'Pele','변화와 변혁의 여신'],
+        [2,'Kane','창조의 신'],
+        [3,'Ku','힘과 용기'],
+        [4,'Lono','평화와 풍요'],
+        [5,'Kanaloa','바다와 치유'],
+        [6,'Maui','영웅과 변화']
+        [7, name: 'Hi\'iaka', desc: '춤과 치유'}],
+        [8, name: 'Laka', desc: '훌라의 여신'],
+        [9, name: 'Papa', desc: '대지의 어머니']},
+        [10, name: 'Wakea', desc: '하늘의 아버지'],
+        [11, name: 'Maui Sun', desc: '태양 잡기'],
+        [12, name: 'Rainbow', desc: '희망의 다리'],
+        [13, name: 'Ocean', desc: '무한한 가능성'],
+        [14, name: 'Volcano', desc: '내면의 힘'],
+        [15, name: 'Mountain', desc: '안정과 지혜'],
+        [16, name: 'Forest', desc: '성장과 풍요'],
+        [17, name: 'Waterfall', desc: '정화와 재생'],
+        [18, name: 'Moon', desc: '직관과 여성성'],
+        [19, name: 'Stars', desc: '길잡이와 희망'],
+        [20, name: 'Wind', desc: '변화와 소통'],
+        [21, name: 'Fire', desc: '열정과 변혁'],
+        [22, name: 'Water', desc: '감정과 흐름'],
+        [23, name: 'Earth', desc: '근거와 안정'],
+        [24, name: 'Bird', desc: '자유와 메시지'],
+        [25, name: 'Fish', desc: '풍요와 적응'],
+        [26, name: 'Turtle', desc: '인내와 지혜'],
+        [27, name: 'Shark', desc: '보호와 힘'],
+        [28, name: 'Dolphin', desc: '기쁨과 소통'],
+        [29, name: 'Whale', desc: '고대 지혜'],
+        [30, name: 'Flower', desc: '아름다움과 성장'],
+        [31, name: 'Tree', desc: '뿌리와 성장'],
+        [32, name: 'Coconut', desc: '생명과 풍요'],
+        [33, name: 'Ti Leaf', desc: '보호와 신성'],
+        [34, name: 'Bamboo', desc: '유연성과 힘'],
+        [35, name: 'Taro', desc: '영양과 가족'],
+        [36, name: 'Sweet Potato', desc: '근면과 성실'],
+        [37, name: 'Breadfruit', desc: '공유와 풍요'],
+        [38, name: 'Canoe', desc: '여정과 모험'],
+        [39, name: 'Drum', desc: '리듬과 소통'],
+        [40, name: 'Lei', desc: '사랑과 연결'],
+        [41, name: 'Hook', desc: '잡아당김'],
+        [42, name: 'Net', desc: '모으기와 공동체'],
+        [43, name: 'Warrior', desc: '용기와 명예'],
+        [44, name: 'Aloha', desc: '사랑과 조화']
+        // 👉 나머지 44장 그대로 확장 가능
+            ];
+
+    const pick = cards[Math.floor(Math.random() * cards.length)];
+    showManaCard(pick[0], pick[1], pick[2]);
+}
     </script>
 </body>
 </html>
