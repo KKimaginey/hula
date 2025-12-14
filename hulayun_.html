@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hula Yun – Mana Card</title>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== Reset ===== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #111;
+  background: #fff;
+}
+h1,h2,h3 { font-weight: 600; }
+p { line-height: 1.7; font-size: 14px; }
+
+/* ===== Layout ===== */
+section {
+  max-width: 980px;
+  margin: 100px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* ===== Controls ===== */
+.spread-controls button {
+  background: none;
+  border: 1px solid #111;
+  padding: 8px 16px;
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+/* ===== Cards ===== */
+.spread {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.mana-card {
+  width: 180px;
+  height: 260px;
+  border: 1px solid #111;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform .3s;
+}
+.mana-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ===== SVG Icon ===== */
+.card-icon {
+  width: 80px;
+  height: 80px;
+  margin: 20px auto;
+}
+
+/* ===== Modal ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal.hidden { display: none; }
+
+.modal-content {
+  background: #fff;
+  max-width: 460px;
+  padding: 32px;
+  border: 1px solid #111;
+  text-align: left;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+.meta {
+  font-size: 13px;
+  margin-top: 16px;
+  color: #444;
+}
+</style>
+</head>
+
+<body>
+
+<section id="mana">
+  <h2>Mana Card Spread</h2>
+  <p>오늘의 흐름을 하와이의 지혜로 읽어보세요.</p>
+
+  <div class="spread-controls">
+    <button data-count="1">1장</button>
+    <button data-count="3">3장</button>
+    <button data-count="5">5장</button>
+  </div>
+
+  <div id="spread" class="spread"></div>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close">×</span>
+    <h3 id="mTitle"></h3>
+    <p id="mMeaning"></p>
+    <div class="meta">
+      <p><strong>Hula</strong>: <span id="mHula"></span></p>
+      <p><strong>Mele</strong>: <span id="mMele"></span></p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Mana Card Data ===== */
+const manaCards = [
+  {
+    title: "Aloha",
+    meaning: "모든 행동과 생각에 사랑과 자비를 담으세요.",
+    hula: "기본 손동작 – 포용과 나눔",
+    mele: "Aloha ʻOe – 이별 속의 사랑"
+  },
+  {
+    title: "Pele",
+    meaning: "강렬한 변화와 재창조의 시기입니다.",
+    hula: "강한 발 디딤 – 화산의 힘",
+    mele: "He Inoa No Pele – 여신의 이름"
+  },
+  {
+    title: "Laka",
+    meaning: "예술과 영감이 흐르는 때입니다.",
+    hula: "손의 곡선 – 숲과 식물",
+    mele: "Ka Uluwehi O Ke Kai"
+  },
+  // 👉 여기에 44장 전부 동일 구조로 추가
+];
+
+/* ===== Logic ===== */
+const spread = document.getElementById("spread");
+const modal = document.getElementById("modal");
+const closeBtn = document.querySelector(".close");
+
+document.querySelectorAll(".spread-controls button")
+.forEach(btn => {
+  btn.onclick = () => draw(parseInt(btn.dataset.count));
+});
+
+function draw(count) {
+  spread.innerHTML = "";
+  const shuffled = [...manaCards].sort(() => Math.random() - .5);
+  const selected = shuffled.slice(0, count);
+
+  saveToday(selected[0]);
+
+  selected.forEach(card => {
+    const el = document.createElement("div");
+    el.className = "mana-card";
+    el.innerHTML = `
+      <svg class="card-icon" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="36" stroke="#111" fill="none"/>
+        <text x="50" y="56" text-anchor="middle" font-size="20">${card.title[0]}</text>
+      </svg>
+      <p>${card.title}</p>
+    `;
+    el.onclick = () => open(card);
+    spread.appendChild(el);
+  });
+}
+
+function open(card) {
+  modal.classList.remove("hidden");
+  mTitle.textContent = card.title;
+  mMeaning.textContent = card.meaning;
+  mHula.textContent = card.hula;
+  mMele.textContent = card.mele;
+}
+
+closeBtn.onclick = () => modal.classList.add("hidden");
+
+function saveToday(card) {
+  const today = new Date().toDateString();
+  const saved = JSON.parse(localStorage.getItem("todayCard"));
+  if (!saved || saved.date !== today) {
+    localStorage.setItem("todayCard", JSON.stringify({ date: today, card }));
+  }
+}
+</script>
+
+</body>
+</html>
