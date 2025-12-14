@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hula Academy - 하와이안 훌라 댄스 아카데미</title>
     
-    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <style>
@@ -543,6 +541,51 @@
         }
 
         /* Mana Card Section */
+        .mana-card-deck-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* 카드 뒷면 디자인 (클릭 가능) */
+        .mana-card-back {
+            width: 200px;
+            height: 300px;
+            background: linear-gradient(135deg, #FFB300 0%, #FF6F00 100%);
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.6s;
+            position: relative;
+            border: 4px solid white;
+        }
+
+        .mana-card-back:hover {
+            transform: translateY(-10px) rotateY(10deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .mana-card-back .material-icons {
+            font-size: 64px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .mana-card-back span {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
         .mana-card-display {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -550,37 +593,9 @@
             max-width: 800px;
             margin: 0 auto;
         }
-
-        .mana-card {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            border-radius: 12px;
-            padding: 24px;
-            text-align: center;
-            color: white;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .mana-card:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .mana-card .card-number {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .mana-card .card-title {
-            font-size: 14px;
-            opacity: 0.9;
-        }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-content">
             <div class="logo">
@@ -600,14 +615,12 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <h1>🌺 Hula Academy 🌺</h1>
         <p>알로하! 하와이안 훌라 댄스의 세계로 초대합니다</p>
         <a href="#lessons" class="cta-button">강습 시작하기</a>
     </section>
 
-    <!-- Hula History Section -->
     <section id="history" class="container">
         <div class="section-title fade-in-up">
             <h2><span class="material-icons">local_florist</span> Hula History</h2>
@@ -649,7 +662,6 @@
         </div>
     </section>
 
-    <!-- Dance Lessons Section -->
     <section id="lessons" class="container" style="background: white; padding: 60px 20px;">
         <div class="section-title fade-in-up">
             <h2><span class="material-icons">school</span> Dance Lessons</h2>
@@ -774,7 +786,6 @@
         </div>
     </section>
 
-    <!-- Mele Songs Section -->
     <section id="songs" class="container">
         <div class="section-title fade-in-up">
             <h2><span class="material-icons">music_note</span> Mele Songs</h2>
@@ -801,7 +812,7 @@
                     <p>"그물 끌기" - 어부들이 그물을 끌어올리는 모습을 경쾌하게 표현한 노래. 협동과 노동의 즐거움.</p>
                 </div>
             </div>
-
+            
             <div class="song-item">
                 <div class="song-icon">
                     <span class="material-icons">music_note</span>
@@ -811,54 +822,13 @@
                     <p>"Tiny Bubbles"로도 유명한 돈 호(Don Ho)의 대표곡. 바다의 아름다운 조개를 사랑에 비유한 노래.</p>
                 </div>
             </div>
-
-            <div class="song-item">
+             <div class="song-item">
                 <div class="song-icon">
                     <span class="material-icons">music_note</span>
                 </div>
                 <div class="song-content">
                     <h4>Hawaiian Wedding Song (하와이안 웨딩 송)</h4>
                     <p>"Ke Kali Nei Au" - "당신을 기다립니다". 결혼식에서 가장 많이 연주되는 하와이안 러브송.</p>
-                </div>
-            </div>
-
-            <div class="song-item">
-                <div class="song-icon">
-                    <span class="material-icons">music_note</span>
-                </div>
-                <div class="song-content">
-                    <h4>Blue Hawaii (블루 하와이)</h4>
-                    <p>엘비스 프레슬리로 유명해진 하와이의 푸른 바다와 하늘을 노래한 로맨틱한 곡.</p>
-                </div>
-            </div>
-
-            <div class="song-item">
-                <div class="song-icon">
-                    <span class="material-icons">music_note</span>
-                </div>
-                <div class="song-content">
-                    <h4>Somewhere Over The Rainbow (오버 더 레인보우)</h4>
-                    <p>이스라엘 카마카위워올레(IZ)의 우쿨렐레 버전으로 전 세계적으로 사랑받는 하와이안 스타일 편곡.</p>
-                </div>
-            </div>
-
-            <div class="song-item">
-                <div class="song-icon">
-                    <span class="material-icons">music_note</span>
-                </div>
-                <div class="song-content">
-                    <h4>Ka Nohona Pili Kai (바다 옆 생활)</h4>
-                    <p>하와이의 아름다운 해변 생활을 노래한 전통 멜레. 자연과 조화로운 삶을 표현합니다.</p>
-                </div>
-            </div>
-
-            <div class="song-item">
-                <div class="song-icon">
-                    <span class="material-icons">music_note</span>
-                </div>
-                <div class="song-content">
-                    <h4>E Mama E (어머니여)</h4>
-                    <p>어머니에 대한 사랑과 감사를 표현한 전통 하와이안 송. 가족의 소중함을 노래합니다.</p>
                 </div>
             </div>
         </div>
@@ -868,7 +838,6 @@
         </div>
     </section>
 
-    <!-- Costumes Section -->
     <section id="costumes" class="container" style="background: white; padding: 60px 20px;">
         <div class="section-title fade-in-up">
             <h2><span class="material-icons">checkroom</span> Costumes</h2>
@@ -916,7 +885,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div style="margin-top: 40px; padding: 24px; background: var(--background); border-radius: 12px;">
             <h3 style="color: var(--primary-color); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
                 <span class="material-icons">shopping_bag</span>
@@ -951,19 +920,13 @@
         </div>
     </section>
 
-    <!-- Hawaiian Spirit Section -->
     <section class="container">
         <div class="section-title fade-in-up">
             <h2><span class="material-icons">spa</span> Hawaiian Spirit</h2>
             <p>알로하 정신과 하와이 문화의 가치</p>
         </div>
+        </section>
 
-               <div class="mana-card-display" id="mana-card-area"></div>
-
-        </div>
-    </section>
-
-    <!-- Mana Card Section -->
     <section class="container" style="background: linear-gradient(135deg, #E0F2F1, #B2DFDB); padding: 60px 20px;">
         <div class="section-title fade-in-up">
             <h2><span class="material-icons">style</span> Mana Card - 44 Pick</h2>
@@ -973,48 +936,25 @@
         <div style="max-width: 800px; margin: 0 auto 40px; text-align: center;">
             <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px;">
                 마나 카드는 하와이의 전통 지혜와 신화를 담은 44장의 오라클 카드입니다. 
-                각 카드는 하와이의 신(Akua), 자연, 그리고 영적 가르침을 나타내며, 
-                삶의 방향과 통찰을 제공합니다.
+                아래 카드를 클릭하여 오늘의 운세를 확인해보세요!
             </p>
         </div>
 
-        <div class="mana-card-display">
-            <div class="mana-card" onclick="showManaCard(1, 'Pele', '변화와 변혁의 여신')">
-                <div class="card-number">1</div>
-                <div class="card-title">Pele</div>
+        <div class="mana-card-deck-area">
+            <div class="mana-card-back" onclick="drawOneManaCard()">
+                <span class="material-icons">auto_awesome</span>
+                <span>Click to Draw</span>
             </div>
-            <div class="mana-card" onclick="showManaCard(2, 'Kane', '창조의 신')">
-                <div class="card-number">2</div>
-                <div class="card-title">Kane</div>
-            </div>
-            <div class="mana-card" onclick="showManaCard(3, 'Ku', '힘과 용기')">
-                <div class="card-number">3</div>
-                <div class="card-title">Ku</div>
-            </div>
-            <div class="mana-card" onclick="showManaCard(4, 'Lono', '평화와 풍요')">
-                <div class="card-number">4</div>
-                <div class="card-title">Lono</div>
-            </div>
-            <div class="mana-card" onclick="showManaCard(5, 'Kanaloa', '바다와 치유')">
-                <div class="card-number">5</div>
-                <div class="card-title">Kanaloa</div>
-            </div>
-            <div class="mana-card" onclick="showManaCard(6, 'Maui', '영웅과 변화')">
-                <div class="card-number">6</div>
-                <div class="card-title">Maui</div>
-            </div>
+            <p style="margin-top: 16px; color: var(--text-secondary); font-weight: bold;">
+                👆 카드를 클릭하여 한 장을 뽑아보세요!
+            </p>
         </div>
 
-        <div style="text-align: center; margin-top: 40px;">
-            <p style="color: var(--text-secondary); margin-bottom: 20px;">
-                💫 전체 44장의 마나 카드에 대해 알아보세요
-            </p>
-            <button class="cta-button" onclick="drawOneMana()">🌺 마나카드 뽑기</button>
-            <button class="cta-button" onclick="openModal('manaCards')">전체 카드 보기</button>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="cta-button" onclick="openModal('manaCards')">전체 44장 카드 의미 보기</button>
         </div>
     </section>
 
-    <!-- YouTube Class Section -->
     <section id="videos" class="container">
         <div class="section-title fade-in-up">
             <h2><span class="material-icons">play_circle_filled</span> YouTube Class</h2>
@@ -1031,8 +971,7 @@
                     <p>Kaholo, Ami, Hela 등 기본 스텝을 천천히 배워봅니다. (15분)</p>
                 </div>
             </div>
-
-            <div class="video-card">
+             <div class="video-card">
                 <div class="video-thumbnail">
                     <span class="material-icons">play_circle_filled</span>
                 </div>
@@ -1041,44 +980,13 @@
                     <p>하와이안 손동작의 의미와 표현 방법을 상세히 설명합니다. (20분)</p>
                 </div>
             </div>
-
-            <div class="video-card">
+             <div class="video-card">
                 <div class="video-thumbnail">
                     <span class="material-icons">play_circle_filled</span>
                 </div>
                 <div class="video-info">
                     <h4>Aloha 'Oe 완성하기</h4>
                     <p>가장 유명한 하와이안 송에 맞춰 완전한 안무를 배웁니다. (25분)</p>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumbnail">
-                    <span class="material-icons">play_circle_filled</span>
-                </div>
-                <div class="video-info">
-                    <h4>훌라 카히코 소개</h4>
-                    <p>전통 고대 훌라의 역사와 기본 동작을 소개합니다. (18분)</p>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumbnail">
-                    <span class="material-icons">play_circle_filled</span>
-                </div>
-                <div class="video-info">
-                    <h4>훌라 스트레칭 & 워밍업</h4>
-                    <p>훌라를 위한 전신 스트레칭과 준비 운동을 따라합니다. (12분)</p>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumbnail">
-                    <span class="material-icons">play_circle_filled</span>
-                </div>
-                <div class="video-info">
-                    <h4>그룹 훌라 퍼포먼스</h4>
-                    <p>아카데미 학생들의 아름다운 단체 공연 영상입니다. (8분)</p>
                 </div>
             </div>
         </div>
@@ -1093,7 +1001,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div style="margin-bottom: 24px;">
@@ -1118,7 +1025,6 @@
         </div>
     </footer>
 
-    <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">
@@ -1129,6 +1035,54 @@
     </div>
 
     <script>
+        // --- 44장 마나 카드 데이터 (통합 관리) ---
+        const MANA_CARDS_DATA = [
+            {num:1, name:'ʻIʻo', desc:'신비와 근원'},
+            {num:2, name:'Po/Ao', desc:'무의식과 의식'},
+            {num:3, name:'Tapa', desc:'결합'},
+            {num:4, name:'Mana', desc:'내면의 힘'},
+            {num:5, name:'Aloha', desc:'사랑'},
+            {num:6, name:'Pele', desc:'변혁'},
+            {num:7, name:'Hi\'iaka', desc:'춤과 치유'},
+            {num:8, name:'Laka', desc:'훌라의 여신'},
+            {num:9, name:'Papa', desc:'대지의 어머니'},
+            {num:10, name:'Wakea', desc:'하늘의 아버지'},
+            {num:11, name:'Maui Sun', desc:'태양 잡기'},
+            {num:12, name:'Rainbow', desc:'희망의 다리'},
+            {num:13, name:'Ocean', desc:'무한한 가능성'},
+            {num:14, name:'Volcano', desc:'내면의 힘'},
+            {num:15, name:'Mountain', desc:'안정과 지혜'},
+            {num:16, name:'Forest', desc:'성장과 풍요'},
+            {num:17, name:'Waterfall', desc:'정화와 재생'},
+            {num:18, name:'Moon', desc:'직관과 여성성'},
+            {num:19, name:'Stars', desc:'길잡이와 희망'},
+            {num:20, name:'Wind', desc:'변화와 소통'},
+            {num:21, name:'Fire', desc:'열정과 변혁'},
+            {num:22, name:'Water', desc:'감정과 흐름'},
+            {num:23, name:'Earth', desc:'근거와 안정'},
+            {num:24, name:'Bird', desc: '자유와 메시지'},
+            {num:25, name:'Fish', desc: '풍요와 적응'},
+            {num:26, name:'Turtle', desc: '인내와 지혜'},
+            {num:27, name:'Shark', desc: '보호와 힘'},
+            {num:28, name:'Dolphin', desc: '기쁨과 소통'},
+            {num:29, name:'Whale', desc: '고대 지혜'},
+            {num:30, name: 'Flower', desc: '아름다움과 성장'},
+            {num:31, name: 'Tree', desc: '뿌리와 성장'},
+            {num:32, name: 'Coconut', desc: '생명과 풍요'},
+            {num:33, name: 'Ti Leaf', desc: '보호와 신성'},
+            {num:34, name: 'Bamboo', desc: '유연성과 힘'},
+            {num:35, name: 'Taro', desc: '영양과 가족'},
+            {num:36, name: 'Sweet Potato', desc: '근면과 성실'},
+            {num:37, name: 'Breadfruit', desc: '공유와 풍요'},
+            {num:38, name: 'Canoe', desc: '여정과 모험'},
+            {num:39, name: 'Drum', desc: '리듬과 소통'},
+            {num:40, name: 'Lei', desc: '사랑과 연결'},
+            {num:41, name: 'Hook', desc: '잡아당김'},
+            {num:42, name: 'Net', desc: '모으기와 공동체'},
+            {num:43, name: 'Warrior', desc: '용기와 명예'},
+            {num:44, name: 'Aloha', desc: '사랑과 조화'}
+        ];
+
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1154,26 +1108,11 @@
                 content = `
                     <h2 style="color: var(--primary-color); margin-bottom: 24px;">수강 신청 문의</h2>
                     <div style="line-height: 2;">
-                        <p style="margin-bottom: 20px; color: var(--text-secondary);">
-                            훌라 댄스 수업에 관심 가져주셔서 감사합니다!
-                        </p>
+                        <p style="margin-bottom: 20px; color: var(--text-secondary);">훌라 댄스 수업에 관심 가져주셔서 감사합니다!</p>
                         <div style="background: var(--background); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
                             <h3 style="color: var(--primary-color); margin-bottom: 12px;">📞 연락처</h3>
                             <p><strong>전화:</strong> 010-4019-1509</p>
                             <p><strong>이메일:</strong> info@hulaacademy.com</p>
-                            <p><strong>카카오톡:</strong> @hulaacademy</p>
-                        </div>
-                        <div style="background: var(--background); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-                            <h3 style="color: var(--primary-color); margin-bottom: 12px;">📍 위치</h3>
-                            <p>대구시 북구</p>
-                            <p>훌라 아카데미 빌딩 3층</p>
-                            <p>(강남역 2번 출구 도보 5분)</p>
-                        </div>
-                        <div style="background: var(--background); padding: 20px; border-radius: 12px;">
-                            <h3 style="color: var(--primary-color); margin-bottom: 12px;">⏰ 운영 시간</h3>
-                            <p><strong>평일:</strong> 10:00 - 22:00</p>
-                            <p><strong>주말:</strong> 09:00 - 18:00</p>
-                            <p><strong>휴무:</strong> 매주 일요일</p>
                         </div>
                     </div>
                 `;
@@ -1184,49 +1123,9 @@
                         <div style="margin-bottom: 30px; padding: 20px; background: var(--background); border-radius: 12px;">
                             <h3 style="color: var(--primary-color);">Aloha 'Oe</h3>
                             <p style="font-style: italic; color: var(--text-secondary); margin: 10px 0;">
-                                Haʻaheo e ka ua i nā pali<br>
-                                Ke nihi aʻela i ka nahele<br>
-                                E hahai ana paha i ka liko<br>
-                                Pua ʻāhihi lehua o uka
+                                Haʻaheo e ka ua i nā pali...
                             </p>
-                            <p style="color: var(--text-secondary);">
-                                자랑스럽게 비가 절벽에 내리고<br>
-                                조용히 숲으로 미끄러져 들어가<br>
-                                아마도 꽃봉오리를 따라가며<br>
-                                산 위의 레후아 꽃을 찾네
-                            </p>
-                        </div>
-                        
-                        <div style="margin-bottom: 30px; padding: 20px; background: var(--background); border-radius: 12px;">
-                            <h3 style="color: var(--primary-color);">Hukilau Song</h3>
-                            <p style="font-style: italic; color: var(--text-secondary); margin: 10px 0;">
-                                Oh, we're going to a hukilau<br>
-                                A huki huki huki huki hukilau<br>
-                                Everybody loves a hukilau<br>
-                                Where the lau lau is the kau kau at the big luau
-                            </p>
-                            <p style="color: var(--text-secondary);">
-                                오, 우리는 후킬라우에 가요<br>
-                                후키 후키 후키 후키 후킬라우<br>
-                                모두가 후킬라우를 좋아해요<br>
-                                큰 루아우에서 라우라우가 카우카우예요
-                            </p>
-                        </div>
-
-                        <div style="margin-bottom: 30px; padding: 20px; background: var(--background); border-radius: 12px;">
-                            <h3 style="color: var(--primary-color);">Hawaiian Wedding Song</h3>
-                            <p style="font-style: italic; color: var(--text-secondary); margin: 10px 0;">
-                                E lei ka lei, e lei aloha<br>
-                                E lei me ke aloha<br>
-                                Lei, lei aloha<br>
-                                E lei ka lei
-                            </p>
-                            <p style="color: var(--text-secondary);">
-                                레이를 걸어주세요, 사랑의 레이를<br>
-                                사랑으로 레이를 걸어주세요<br>
-                                레이, 사랑의 레이<br>
-                                레이를 걸어주세요
-                            </p>
+                            <p style="color: var(--text-secondary);">자랑스럽게 비가 절벽에 내리고...</p>
                         </div>
                     </div>
                 `;
@@ -1234,7 +1133,7 @@
                 content = `
                     <h2 style="color: var(--primary-color); margin-bottom: 24px;">Mana Card - 44장 전체 카드</h2>
                     <div style="max-height: 60vh; overflow-y: auto;">
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px;">
                             ${generateManaCardList()}
                         </div>
                     </div>
@@ -1250,6 +1149,7 @@
             modal.classList.remove('active');
         }
 
+        // 특정 카드 1장 모달로 보여주기
         function showManaCard(number, name, description) {
             const modal = document.getElementById('modal');
             const modalBody = document.getElementById('modalBody');
@@ -1263,7 +1163,7 @@
                     <p style="color: var(--text-secondary); font-size: 18px; margin-bottom: 24px;">${description}</p>
                     <p style="color: var(--text-secondary); line-height: 1.8;">
                         이 카드는 하와이의 신성한 지혜와 영적 가르침을 담고 있습니다. 
-                        카드의 메시지를 통해 현재의 상황을 이해하고 미래의 방향을 찾아보세요.
+                        오늘의 메시지로 간직해보세요.
                     </p>
                 </div>
             `;
@@ -1271,108 +1171,20 @@
             modal.classList.add('active');
         }
 
-        
+        // 랜덤 카드 1장 뽑기 함수 (수정됨)
         function drawOneManaCard() {
-            const cards = [
-                {num:1,name:'ʻIʻo',desc:'신비와 근원'},
-                {num:2,name:'Po/Ao',desc:'무의식과 의식'},
-                {num:3,name:'Tapa',desc:'결합'},
-                {num:4,name:'Mana',desc:'내면의 힘'},
-                {num:5,name:'Aloha',desc:'사랑'},
-                {num:6,name:'Pele',desc:'변혁'},
-                {num:7,name:'Laka',desc:'훌라의 영감'},
-                {num:8,name:'Ku',desc:'결단'},
-                {num:9,name:'Lono',desc:'풍요'},
-                {num:10,name:'Kanaloa',desc:'치유'},
-                {num:11,name:'Hiʻiaka',desc:'여정'},
-                {num:12,name:'Hina',desc:'양육'},
-                {num:13,name:'Maui',desc:'도전'},
-                {num:14,name:'Papa & Wākea',desc:'일체성'},
-                {num:15,name:'Lei',desc:'소중함'},
-                {num:16,name:'Anuenue',desc:'변형'},
-                {num:17,name:'Moʻo',desc:'주의'},
-                {num:18,name:'Puʻolo',desc:'내려놓음'},
-                {num:19,name:'Pōhaku',desc:'관계'},
-                {num:20,name:'ʻAnoʻano',desc:'의도'},
-                {num:21,name:'Waʻa',desc:'이동'},
-                {num:22,name:'Māmalāhoe',desc:'연민'},
-                {num:23,name:'Hoʻoponopono',desc:'화해'},
-                {num:24,name:'ʻAwa',desc:'헌신'},
-                {num:25,name:'Hulu',desc:'환상'},
-                {num:26,name:'Nalu',desc:'사색'},
-                {num:27,name:'Pueo',desc:'수호'},
-                {num:28,name:'Menehune',desc:'인내'},
-                {num:29,name:'Pua',desc:'성장'},
-                {num:30,name:'Tī',desc:'정화'},
-                {num:31,name:'Haumea',desc:'지속성'},
-                {num:32,name:'Puhi',desc:'혼란'},
-                {num:33,name:'Lāmakū',desc:'승리'},
-                {num:34,name:'Iwi',desc:'존경'},
-                {num:35,name:'Mano',desc:'리더십'},
-                {num:36,name:'Ka wai a ka pīʻilikō',desc:'투영'},
-                {num:37,name:'Pahu',desc:'의례'},
-                {num:38,name:'ʻŌle',desc:'이야기'},
-                {num:39,name:'Poliʻahu',desc:'위로'},
-                {num:40,name:'Naupaka',desc:'거리두기'},
-                {num:41,name:'Lehua',desc:'입문'},
-                {num:42,name:'Kāne',desc:'창조'},
-                {num:43,name:'Huna',desc:'비밀'},
-                {num:44,name:'Lono/Kamapuaʻa',desc:'결실'}
-            ];
-            const card = cards[Math.floor(Math.random() * cards.length)];
-            showManaCard(card.num, card.name, card.desc);
+            // MANA_CARDS_DATA에서 랜덤으로 하나 선택
+            const randomCard = MANA_CARDS_DATA[Math.floor(Math.random() * MANA_CARDS_DATA.length)];
+            showManaCard(randomCard.num, randomCard.name, randomCard.desc);
         }
 
+        // 전체 카드 리스트 HTML 생성 함수 (수정됨)
         function generateManaCardList() {
-            const cards = [
-                {num: 1, name: 'Pele', desc: '변화와 변혁'},
-                {num: 2, name: 'Kane', desc: '창조의 신'},
-                {num: 3, name: 'Ku', desc: '힘과 용기'},
-                {num: 4, name: 'Lono', desc: '평화와 풍요'},
-                {num: 5, name: 'Kanaloa', desc: '바다와 치유'},
-                {num: 6, name: 'Maui', desc: '영웅과 변화'},
-                {num: 7, name: 'Hi\'iaka', desc: '춤과 치유'},
-                {num: 8, name: 'Laka', desc: '훌라의 여신'},
-                {num: 9, name: 'Papa', desc: '대지의 어머니'},
-                {num: 10, name: 'Wakea', desc: '하늘의 아버지'},
-                {num: 11, name: 'Maui Sun', desc: '태양 잡기'},
-                {num: 12, name: 'Rainbow', desc: '희망의 다리'},
-                {num: 13, name: 'Ocean', desc: '무한한 가능성'},
-                {num: 14, name: 'Volcano', desc: '내면의 힘'},
-                {num: 15, name: 'Mountain', desc: '안정과 지혜'},
-                {num: 16, name: 'Forest', desc: '성장과 풍요'},
-                {num: 17, name: 'Waterfall', desc: '정화와 재생'},
-                {num: 18, name: 'Moon', desc: '직관과 여성성'},
-                {num: 19, name: 'Stars', desc: '길잡이와 희망'},
-                {num: 20, name: 'Wind', desc: '변화와 소통'},
-                {num: 21, name: 'Fire', desc: '열정과 변혁'},
-                {num: 22, name: 'Water', desc: '감정과 흐름'},
-                {num: 23, name: 'Earth', desc: '근거와 안정'},
-                {num: 24, name: 'Bird', desc: '자유와 메시지'},
-                {num: 25, name: 'Fish', desc: '풍요와 적응'},
-                {num: 26, name: 'Turtle', desc: '인내와 지혜'},
-                {num: 27, name: 'Shark', desc: '보호와 힘'},
-                {num: 28, name: 'Dolphin', desc: '기쁨과 소통'},
-                {num: 29, name: 'Whale', desc: '고대 지혜'},
-                {num: 30, name: 'Flower', desc: '아름다움과 성장'},
-                {num: 31, name: 'Tree', desc: '뿌리와 성장'},
-                {num: 32, name: 'Coconut', desc: '생명과 풍요'},
-                {num: 33, name: 'Ti Leaf', desc: '보호와 신성'},
-                {num: 34, name: 'Bamboo', desc: '유연성과 힘'},
-                {num: 35, name: 'Taro', desc: '영양과 가족'},
-                {num: 36, name: 'Sweet Potato', desc: '근면과 성실'},
-                {num: 37, name: 'Breadfruit', desc: '공유와 풍요'},
-                {num: 38, name: 'Canoe', desc: '여정과 모험'},
-                {num: 39, name: 'Drum', desc: '리듬과 소통'},
-                {num: 40, name: 'Lei', desc: '사랑과 연결'},
-                {num: 41, name: 'Hook', desc: '잡아당김'},
-                {num: 42, name: 'Net', desc: '모으기와 공동체'},
-                {num: 43, name: 'Warrior', desc: '용기와 명예'},
-                {num: 44, name: 'Aloha', desc: '사랑과 조화'}
-            ];
-            
-            return cards.map(card => `
-                <div style="padding: 16px; background: var(--background); border-radius: 8px; cursor: pointer;" onclick="showManaCard(${card.num}, '${card.name}', '${card.desc}')">
+            return MANA_CARDS_DATA.map(card => `
+                <div style="padding: 16px; background: var(--background); border-radius: 8px; cursor: pointer; transition: transform 0.2s;" 
+                     onclick="showManaCard(${card.num}, '${card.name}', '${card.desc}')"
+                     onmouseover="this.style.transform='scale(1.02)'" 
+                     onmouseout="this.style.transform='scale(1)'">
                     <div style="font-size: 24px; font-weight: bold; color: var(--primary-color); margin-bottom: 4px;">${card.num}. ${card.name}</div>
                     <div style="font-size: 14px; color: var(--text-secondary);">${card.desc}</div>
                 </div>
@@ -1403,58 +1215,6 @@
         document.querySelectorAll('.card, .program-card, .song-item, .video-card, .costume-item').forEach(el => {
             observer.observe(el);
         });
-        function drawOneMana() {
-        const cards = [
-        [1,'Pele','변화와 변혁의 여신'],
-        [2,'Kane','창조의 신'],
-        [3,'Ku','힘과 용기'],
-        [4,'Lono','평화와 풍요'],
-        [5,'Kanaloa','바다와 치유'],
-        [6,'Maui','영웅과 변화']
-        [7, name: 'Hi\'iaka', desc: '춤과 치유'}],
-        [8, name: 'Laka', desc: '훌라의 여신'],
-        [9, name: 'Papa', desc: '대지의 어머니']},
-        [10, name: 'Wakea', desc: '하늘의 아버지'],
-        [11, name: 'Maui Sun', desc: '태양 잡기'],
-        [12, name: 'Rainbow', desc: '희망의 다리'],
-        [13, name: 'Ocean', desc: '무한한 가능성'],
-        [14, name: 'Volcano', desc: '내면의 힘'],
-        [15, name: 'Mountain', desc: '안정과 지혜'],
-        [16, name: 'Forest', desc: '성장과 풍요'],
-        [17, name: 'Waterfall', desc: '정화와 재생'],
-        [18, name: 'Moon', desc: '직관과 여성성'],
-        [19, name: 'Stars', desc: '길잡이와 희망'],
-        [20, name: 'Wind', desc: '변화와 소통'],
-        [21, name: 'Fire', desc: '열정과 변혁'],
-        [22, name: 'Water', desc: '감정과 흐름'],
-        [23, name: 'Earth', desc: '근거와 안정'],
-        [24, name: 'Bird', desc: '자유와 메시지'],
-        [25, name: 'Fish', desc: '풍요와 적응'],
-        [26, name: 'Turtle', desc: '인내와 지혜'],
-        [27, name: 'Shark', desc: '보호와 힘'],
-        [28, name: 'Dolphin', desc: '기쁨과 소통'],
-        [29, name: 'Whale', desc: '고대 지혜'],
-        [30, name: 'Flower', desc: '아름다움과 성장'],
-        [31, name: 'Tree', desc: '뿌리와 성장'],
-        [32, name: 'Coconut', desc: '생명과 풍요'],
-        [33, name: 'Ti Leaf', desc: '보호와 신성'],
-        [34, name: 'Bamboo', desc: '유연성과 힘'],
-        [35, name: 'Taro', desc: '영양과 가족'],
-        [36, name: 'Sweet Potato', desc: '근면과 성실'],
-        [37, name: 'Breadfruit', desc: '공유와 풍요'],
-        [38, name: 'Canoe', desc: '여정과 모험'],
-        [39, name: 'Drum', desc: '리듬과 소통'],
-        [40, name: 'Lei', desc: '사랑과 연결'],
-        [41, name: 'Hook', desc: '잡아당김'],
-        [42, name: 'Net', desc: '모으기와 공동체'],
-        [43, name: 'Warrior', desc: '용기와 명예'],
-        [44, name: 'Aloha', desc: '사랑과 조화']
-        // 👉 나머지 44장 그대로 확장 가능
-            ];
-
-    const pick = cards[Math.floor(Math.random() * cards.length)];
-    showManaCard(pick[0], pick[1], pick[2]);
-}
     </script>
 </body>
 </html>
